@@ -354,16 +354,12 @@ const App = () => {
 
   return (
     <>
-<<<<<<< HEAD
-    <Main/>
-=======
       <Routes>
         <Route path="/" element={<Main />} />
 
         <Route path="/user/:id/received/review" element={<ReviewList />} />
         <Route path="/user/:id/received/review/create" element={<ReviewCreate />} />
       </Routes>
->>>>>>> develop
       <Header></Header>
       <Nav
         topics={topics}
