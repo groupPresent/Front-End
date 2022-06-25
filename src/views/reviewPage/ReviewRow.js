@@ -1,26 +1,21 @@
 import { Link } from "react-router-dom";
 
 export default function ReviewRow({ idx, giftName, giftPhoto, star, review }) {
-  // const giftName = giftName;
-  // const pubDate = props.row.pubDate;
-  // const desc = props.row.description;
 
   return (
-    <Link to={`/yeram/detail/${idx}`}>
-      <li className="review-row">
+    <li className="review-row">
+      <div>
+        <div>...</div>
         <div>
-          <div>...</div>
-          <div>
-            <img className="gift-img" src={giftPhoto} />
-          </div>
-          <div className="gift-info">
-            <div className="name">º±π∞ ¿Ã∏ß: {giftName}</div>
-            <div className="price">º±π∞ ∞°∞›: {}</div>
-            <div className="star">º±π∞ ∫∞¡°: {star}</div>
-            <div className="review">∏Æ∫‰ ≥ªøÎ: {review}</div>
-          </div>
+          <img className="gift-img" src={giftPhoto} />
         </div>
-      </li>
-    </Link>
+        <div className="gift-info">
+          <div className="name">ÏÑ†Î¨º Ïù¥Î¶Ñ: {giftName}</div>
+          <div className="price">ÏÑ†Î¨º Í∞ÄÍ≤©: {}</div>
+          <div className="star">ÏÑ†Î¨º Î≥ÑÏ†ê: {star}</div>
+          <div className="review">Î¶¨Î∑∞ ÎÇ¥Ïö©: {review}</div>
+        </div>
+      </div>
+    </li>
   );
 }
