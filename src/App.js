@@ -31,7 +31,9 @@ function Nav(props){
         props.onChangeMode(Number(event.target.id));
       }}>{t.title}</a>
     </li>)
+     // console.log(props.topics.length);
   }
+
   return <nav>
     <ul>
       {lis}
@@ -49,6 +51,8 @@ function Anniversaries(props){
         props.onChangeMode(Number(event.target.id));
       }}>{t.title}</a>
     </li>)
+
+   // console.log(props.anniversaries.length);
   }
   return <nav>
     <ul>
@@ -137,7 +141,11 @@ const App = () => {
       }}>+</button>
       <button /*onClick={}*/>...</button>
         
-        <Anniversaries anniversaries = {anniversaries}></Anniversaries>
+        <Anniversaries anniversaries={anniversaries} onChangeMode={(_id)=>{
+        setMode('READ');
+        setAnniversaryId(_id);
+      }}></Anniversaries>
+      
       <button>친구 목록 보기</button>
       <button>내가 남긴 후기 history</button>
     </article>},
@@ -187,7 +195,7 @@ const App = () => {
           }
         }
         setTopics(newTopics);
-        setMode('WELCOME');
+       
       }} /></li>
     </>
   } else if(mode === 'CREATE'){
@@ -229,10 +237,11 @@ const App = () => {
       const newAnniversaries = [...anniversaries]
       newAnniversaries.push(newAnniversary);
       setAnniversaries(newAnniversaries);
-      setAnniversaryId(anniversaryId+1);
-      setMode('READ');
-      console.log(newAnniversaries);
       console.log(anniversaries);
+      setMode('READ');
+      setAnniversaryId(nextAnniversaryId);
+      setNextAnniversaryId(nextAnniversaryId + 1);
+      
     }}></Modal>
   } 
 
