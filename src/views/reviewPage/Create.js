@@ -13,17 +13,20 @@ export default function ReviewCreate(props) {
         className="create-review-form"
         onSubmit={(event) => {
           event.preventDefault();
-          const data = {
-            giftName: event.target.name.value,
-            giftReview: event.target.review.value
-          };
-          submitReview(data);
+          const img = event.target[0].files[0];
+          const formData = new FormData();
+          formData.append('giftImage', img);
+          formData.append('giftName', event.target.name.value);
+          formData.append('giftReview', event.target.review.value);
+
+        //   for (const keyValue of formData) console.log(keyValue);
+          submitReview(formData);
         }}
       >
         <div>
           <div className="gift-info-wrap">
             <div className="gift-photo">
-              <input type="file" accept="image/*" required multiple />
+              <input type="file" accept="image/*" name="file" required multiple/>
             </div>
             <div className="gift-info">
               <div className="gift-name">
