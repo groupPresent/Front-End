@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ReviewRow from "./ReviewRow";
 
 export default function ReviewList(props) {
@@ -6,19 +7,19 @@ export default function ReviewList(props) {
   const reviews = [
     {
       idx: "1",
-      name: "¾ÆÀÌÆù",
+      name: "ì•„ì´í°",
       photo: "/",
-      star: "5Á¡",
-      review: "¾ÆÀÌÆù ÁÁ¾Ó"
+      star: "5ì ",
+      review: "ì•„ì´í° ì¢‹ì•™"
     },
-    { idx: "2", name: "¸ÆºÏ", photo: "/", star: "4Á¡", review: "m2Ä¨ ³ª¿Ô´ë" }
-  ]; //API¿¡¼­ ¹Ş¾Æ¿À´Â µí
+    { idx: "2", name: "ë§¥ë¶", photo: "/", star: "4ì ", review: "m2ì¹© ë‚˜ì™”ëŒ€" }
+  ]; //APIì—ì„œ ë°›ì•„ì˜¤ëŠ” ë“¯
 
   return (
     <>
       <h1>Leview list</h1>
       <ul className="reviewListView">
-        {!reviews.length && <h4>¼±¹° ÈÄ±â°¡ ¾ø½À´Ï´Ù.</h4>}
+        {!reviews.length && <h4>ì„ ë¬¼ í›„ê¸°ê°€ ì—†ìŠµë‹ˆë‹¤.</h4>}
         {reviews?.map((review) => {
           return (
             <ReviewRow
@@ -32,7 +33,9 @@ export default function ReviewList(props) {
           );
         })}
       </ul>
-      <span>+</span>
+      <Link to={`/user/:id/received/review/create`}>
+        <span>+</span>
+      </Link>
     </>
   );
 }
