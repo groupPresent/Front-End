@@ -2,8 +2,19 @@ import React, { Fragment, useEffect, useState } from "react";
 
 export default function ReviewCreate(props) {
   const submitReview = (data) => {
-    console.log(data);
+    // JSON.stringify(data)
+    // console.log(data)
+    // JSON.load(data)
+    // console.log(data)
+    // console.log(data["giftImage"]);
+    // console.log(data["giftName"]);
+    // console.log(data["giftReview"]);
     //ㅇㅇ 잘 넘어옴. back으로 보내주기만 하면 됨
+    //axios 뭐시기 쓰는듯
+
+    //일단 user id 모르겠음, 백한테 달라고 해봐야겠음
+    // debugger;
+    window.location.href = `/user/1/received/review`;
   };
 
   return (
@@ -18,8 +29,6 @@ export default function ReviewCreate(props) {
           formData.append('giftImage', img);
           formData.append('giftName', event.target.name.value);
           formData.append('giftReview', event.target.review.value);
-
-        //   for (const keyValue of formData) console.log(keyValue);
           submitReview(formData);
         }}
       >
