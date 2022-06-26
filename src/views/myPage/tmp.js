@@ -13,13 +13,13 @@ const MyPage = () => {
     <>
       <ul>
         <li>
-          <Link to="myInfo">ë‚´ ì •ë³´</Link>
+          <Link to="myInfo">³» Á¤º¸</Link>
         </li>
         <li>
-          <Link to="funded">ë°›ì€ íŽ€ë”©</Link>
+          <Link to="funded">¹ÞÀº ÆÝµù</Link>
         </li>
         <li>
-          <Link to="funding">ë³´ë‚¸ íŽ€ë”©</Link>
+          <Link to="funding">º¸³½ ÆÝµù</Link>
         </li>
       </ul>
     </>
