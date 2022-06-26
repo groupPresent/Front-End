@@ -10,9 +10,17 @@ export default function ReviewList(props) {
       name: "아이폰",
       photo: "/",
       star: "5점",
+      price: 1000000,
       review: "아이폰 좋앙"
     },
-    { idx: "2", name: "맥북", photo: "/", star: "4점", review: "m2칩 나왔대" }
+    { 
+      idx: "2", 
+      name: "맥북", 
+      photo: "/", 
+      star: "4점",
+      price: 5000000, 
+      review: "m2칩 나왔대" 
+    }
   ]; //API에서 받아오는 듯
 
   return (
@@ -23,19 +31,16 @@ export default function ReviewList(props) {
         {reviews?.map((review) => {
           return (
             <ReviewRow
+              review={review}
               index={review.idx}
               giftName={review.name}
               giftPhoto={review.photo}
               star={review.star}
-              review={review.review}
-              // row={v}
+              price={review.price}
             />
           );
         })}
       </ul>
-      <Link to={`/user/:id/received/review/create`}>
-        <span>+</span>
-      </Link>
     </>
   );
 }

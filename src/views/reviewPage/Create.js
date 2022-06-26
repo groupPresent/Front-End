@@ -1,20 +1,18 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ReviewCreate(props) {
-  const submitReview = (data) => {
-    // JSON.stringify(data)
-    // console.log(data)
-    // JSON.load(data)
-    // console.log(data)
-    // console.log(data["giftImage"]);
-    // console.log(data["giftName"]);
-    // console.log(data["giftReview"]);
+    const submitReview = (data) => {
+
+    for(var pair of data.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]); 
+     }
     //ㅇㅇ 잘 넘어옴. back으로 보내주기만 하면 됨
     //axios 뭐시기 쓰는듯
 
     //일단 user id 모르겠음, 백한테 달라고 해봐야겠음
     // debugger;
-    window.location.href = `/user/1/received/review`;
+    // window.location.href = `/user/funding/review`;
   };
 
   return (
@@ -29,6 +27,9 @@ export default function ReviewCreate(props) {
           formData.append('giftImage', img);
           formData.append('giftName', event.target.name.value);
           formData.append('giftReview', event.target.review.value);
+        //   for(var pair of formData.entries()) {
+        //     console.log(pair[0]+ ', '+ pair[1]); 
+        //  }
           submitReview(formData);
         }}
       >
@@ -63,6 +64,9 @@ export default function ReviewCreate(props) {
         </div>
 
         <input type="submit" value="후기 등록"></input>
+        <Link to={`/user/funding/review`} key={props}>
+            <button>취소</button>
+        </Link>
       </form>
     </>
   );
