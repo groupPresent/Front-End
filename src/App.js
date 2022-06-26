@@ -212,7 +212,7 @@ const App = () => {
           </button>
           <button /*onClick={}*/>...</button>
 
-          {/* <Anniversaries anniversaries={anniversaries}></Anniversaries> */}
+          <Anniversaries anniversaries={anniversaries}></Anniversaries>
           <button>친구 목록 보기</button>
           <button>내가 남긴 후기 history</button>
         </article>
@@ -260,6 +260,8 @@ const App = () => {
 
 
   //아무 기능 없이 보여주는 모드
+  //맨 위에 기본 메뉴들은 Nav를 통해 보여주고 있고
+  //여기서 read는 각 메뉴의 내용들을 보여준다는 의미이다
   if (mode === 'READ') {
     let title,body = null
     for (let i = 0; i < topics.length; i++) {
@@ -395,7 +397,7 @@ const App = () => {
       {content}
 
       
-      <Anniversaries anniversaries={anniversaries}></Anniversaries>
+      {/* <Anniversaries anniversaries={anniversaries}></Anniversaries> */}
 
       <ul>
         <li>
