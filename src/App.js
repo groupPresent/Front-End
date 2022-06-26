@@ -243,8 +243,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
 
-        <Route path="/user/:id/received/review" element={<ReviewList />} />
-        <Route path="/user/:id/received/review/create" element={<ReviewCreate />} />
+        <Route path="/user/funding/review" element={<ReviewList />} />
+        <Route path="/user/funding/review/create" element={<ReviewCreate />} />
       </Routes>
       <Header></Header>
       <Nav topics={topics} onChangeMode={(_id)=>{
