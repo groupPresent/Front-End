@@ -29,6 +29,8 @@ function Header(props) {
   )
 }
 
+
+//내 정보 , 받은 펀딩 , 보낸 펀딩
 function Nav(props) {
   const lis = []
   for (let i = 0; i < props.topics.length; i++) {
@@ -41,6 +43,8 @@ function Nav(props) {
           onClick={(event) => {
             event.preventDefault()
             props.onChangeMode(Number(event.target.id))
+            // 여기서 클릭한 내용의 id로 setId가 실행이 되어서
+            //아래에 이 id값을 통한 내용이 보여지게 됨
           }}
         >
           {t.title}
@@ -71,7 +75,7 @@ function Anniversaries(props) {
         >
           {t.title}
         </a>
-      </li>,
+      </li>
     )
   }
   return (
@@ -81,7 +85,6 @@ function Anniversaries(props) {
   )
 }
 
-//
 
 function Modal(props) {
   return (
@@ -187,6 +190,8 @@ const App = () => {
   const [anniversaryId, setAnniversaryId] = useState(anniversaries.length)
   const [nextAnniversaryId, setNextAnniversaryId] = useState(anniversaryId + 1)
 
+
+  //이 부분이 중간에 content에
   const [topics, setTopics] = useState([
     {
       id: 1,
@@ -207,7 +212,7 @@ const App = () => {
           </button>
           <button /*onClick={}*/>...</button>
 
-          <Anniversaries anniversaries={anniversaries}></Anniversaries>
+          {/* <Anniversaries anniversaries={anniversaries}></Anniversaries> */}
           <button>친구 목록 보기</button>
           <button>내가 남긴 후기 history</button>
         </article>
@@ -248,11 +253,19 @@ const App = () => {
   ])
 
   let content = null
+  //중간에 보여지는 내용들
+
   let contextControl = null
+  //중간 내용 아래에 보이는 Update , Delete버튼
+
+
+  //아무 기능 없이 보여주는 모드
   if (mode === 'READ') {
     let title,body = null
     for (let i = 0; i < topics.length; i++) {
       if (topics[i].id === id) {
+        //맨 처음엔 null이라 아무것도 안 뜸
+        //id값은 Nav컴포넌트에서 클릭으로 정해짐
         title = topics[i].title
         body = topics[i].body
       }
@@ -265,6 +278,8 @@ const App = () => {
             href={'/update/' + id}
             onClick={(event) => {
               event.preventDefault()
+              //href를 통해 다른 곳으로 화면이 넘어가는 것을 막아줌
+              //href는 단지 화면의 이동을 명시하기 위한 목적으로만 사용
               setMode('UPDATE')
             }}
           >
@@ -289,15 +304,19 @@ const App = () => {
         </li>
       </>
     )
-  } else if (mode === 'CREATE') {
+  } 
+  //
+  else if (mode === 'CREATE') {
     content = (
       <Create
+        //Create컴포넌트에 아래 함수를 넘겨서 새로운 목록을 만듬
         onCreate={(_title, _body) => {
           const newTopic = { id: nextId, title: _title, body: _body }
           const newTopics = [...topics]
           newTopics.push(newTopic)
           setTopics(newTopics)
-          setMode('READ')
+          setMode('READ') 
+          //새로 create가 되면 다시 read모드로 변경
           setId(nextId)
           setNextId(nextId + 1)
         }}
@@ -334,32 +353,36 @@ const App = () => {
   } else if (mode === 'MODAL') {
     content = (
       <Modal
-        onCreate={(_title, _body) => {
+        onCreate={(_title) => {
           const newAnniversary = {
             anniversaryId: nextAnniversaryId,
-            title: _title,
-            body: _body,
+            title: _title
           }
           const newAnniversaries = [...anniversaries]
           newAnniversaries.push(newAnniversary)
           setAnniversaries(newAnniversaries)
-          setAnniversaryId(anniversaryId + 1)
           setMode('READ')
-          console.log(newAnniversaries)
-          console.log(anniversaries)
+          setAnniversaryId(nextAnniversaryId)
+          setNextAnniversaryId(nextAnniversaryId + 1)
+          console.log(newAnniversaries) //됨
+          console.log(anniversaries)  //이게 안됨
         }}
-      ></Modal>
+      ></Modal> 
     )
+    //이 모달창이 문제임
+    //이게 각 기능들(내 정보,받은펀디,보낸펀딩)에 뜨는 content를 수정하는
+    //부분인데 이게 추가가 안되는 상황
   }
 
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Main />} />
 
         <Route path="/user/:id/received/review" element={<ReviewList />} />
         <Route path="/user/:id/received/review/create" element={<ReviewCreate />} />
-      </Routes>
+      </Routes> */}
+
       <Header></Header>
       <Nav
         topics={topics}
@@ -368,7 +391,12 @@ const App = () => {
           setId(_id)
         }}
       ></Nav>
+
       {content}
+
+      
+      <Anniversaries anniversaries={anniversaries}></Anniversaries>
+
       <ul>
         <li>
           <a
@@ -383,6 +411,9 @@ const App = () => {
         </li>
         {contextControl}
       </ul>
+      {/* 이 버튼들(create,update,Delete)은 사실 가장 
+      메인메뉴인 내정보 받은펀딩 보낸펀딩 이거 3개를 지우고 삭제하는거라
+      어차피 안 쓰이고 필요없어서 지워지게 될 예정 */}
     </>
   )
 }
