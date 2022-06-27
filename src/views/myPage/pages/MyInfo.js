@@ -33,9 +33,8 @@ const MyInfo = () => {
       description: '종강이다',
     },
   ])
-  const [anniversaryId, setAnniversaryId] = useState(
-    anniversaries.length
-  )
+  const [anniversaryId, setAnniversaryId] = useState(anniversaries.length)
+
 
   const [mode, setMode] = useState('READ')
 
@@ -54,7 +53,7 @@ const MyInfo = () => {
         <h3>기념일</h3>
           <ul>
             {anniversaries.map((anniversary) => (
-              <Anniversaries anniversary={anniversary} key={anniversary.anniversaryId}/>
+              <Anniversaries anniversary={anniversary} setAnniversaries={setAnniversaries} key={anniversary.anniversaryId}/>
             ))}
           </ul>
           <button onClick={() => setMode('CREATE')}>기념일 새로 등록</button>
@@ -80,9 +79,9 @@ const MyInfo = () => {
               date,
               description,
             }
-            console.log(tmp)
+            //console.log(tmp)
             newAnniversary.push(tmp)
-            console.log(newAnniversary)
+            //console.log(newAnniversary)
 
             setAnniversaryId(id) //useState는 비동기로 처리가 되므로 
                                 //id값은 마지막에 수정
@@ -104,6 +103,8 @@ const MyInfo = () => {
             <input type="submit" value="생성하기"></input>
           </p>
         </form>
+        <button onClick={()=>setMode('READ')}>뒤로가기</button>
+        
       </article>
     )
   }
