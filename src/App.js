@@ -81,7 +81,6 @@ function Anniversaries(props) {
   )
 }
 
-//
 
 function Modal(props) {
   return (
