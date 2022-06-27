@@ -44,13 +44,14 @@ const MyInfo = () => {
       <div>
         <MainList />
 
-        <ul>
-          <li>{info.img}</li>
-          <li>{info.name}</li>
-          <li>{info.date}</li>
-          <li>{info.accountNum}</li>
-        </ul>
+        <h3>{info.img}</h3>
+        <h3>{info.name}</h3>
+        <h3>생일 {info.date}</h3>
+        <h3>계좌 번호 {info.accountNum}</h3>
         <div>
+
+        <hr/>
+        <h3>기념일</h3>
           <ul>
             {anniversaries.map((anniversary) => (
               <Anniversaries anniversary={anniversary} key={anniversary.anniversaryId}/>

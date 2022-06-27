@@ -6,13 +6,13 @@ const MainList = () => {
     <div>
       <ul>
         <li>
-          <Link to="mypage">내 정보</Link>
+          <Link to="/mypage">내 정보</Link>
         </li>
         <li> 
-          <Link to="mypage/funded">받은 펀딩</Link>
+          <Link to="/mypage/funded">받은 펀딩</Link>
         </li>
         <li>
-          <Link to="mypage/funding">보낸 펀딩</Link>
+          <Link to="/mypage/funding">보낸 펀딩</Link>
         </li>
       </ul>
     </div>

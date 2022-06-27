@@ -2,8 +2,6 @@ import React from 'react'
 import { Link, Routes, Route } from 'react-router-dom'
 import { useState, useCallback } from 'react'
 import MainList from './pages/MainList'
-import MyInfo from './pages/MyInfo'
-import CreateAnniversary from './pages/CreateAnniversary'
 
 const MyPage = () => {
   // const [mainMode, setMainMode] = useState('')
@@ -15,7 +13,7 @@ const MyPage = () => {
   //   case 'READ':
   //     content=<MyInfo/>
   //     break
-  //   case 'CREATE': //扁充老 货肺 积己
+  //   case 'CREATE': 
   //     content=<CreateAnniversary setMode={setMode}/>
   //     break
 

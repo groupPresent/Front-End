@@ -14,8 +14,6 @@ const App = () => {
 
         {/* <Route path="/mypage" element={<MyPage />}></Route>
         <Route path='/mypage/myinfo' element={<MyInfo/>}/> */}
-
-        
         
         {/* mypage로 접근할 수 있는 경로는 메인페이지에서 아직 구현하지 않았으므로
         지금은 직접 url창에 입력해서 접근해야 함 */}
