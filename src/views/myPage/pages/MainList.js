@@ -6,13 +6,13 @@ const MainList = () => {
     <div>
       <ul>
         <li>
-          <Link to="myInfo">³» Á¤º¸</Link>
+          <Link to="mypage">ë‚´ ì •ë³´</Link>
+        </li>
+        <li> 
+          <Link to="mypage/funded">ë°›ì€ íŽ€ë”©</Link>
         </li>
         <li>
-          <Link to="funded">¹ÞÀº ÆÝµù</Link>
-        </li>
-        <li>
-          <Link to="funding">º¸³½ ÆÝµù</Link>
+          <Link to="mypage/funding">ë³´ë‚¸ íŽ€ë”©</Link>
         </li>
       </ul>
     </div>

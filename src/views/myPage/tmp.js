@@ -1,196 +1,338 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import { useState, useCallback } from 'react'
-import Article from './Article'
-import Create from './Create'
-import Header from './Header'
-import Nav from './Nav'
-import Update from './Update'
-import Modal from './Modal'
+
+import { Route, Routes } from "react-router-dom";
+import Main from "./views/mainPage/Main";
+import ReviewList from "./views/reviewPage/ReviewList";
+import ReviewCreate from "./views/reviewPage/Create";
 
 
-const MyPage = () => {
+function Article(props) {
+  return <article>{props.body}</article>
+}
+
+function Header(props) {
+  return (
+    <header>
+      <h1>
+        <a
+          href="/"
+          onClick={(event) => {
+            event.preventDefault()
+            props.onChangeMode()
+          }}
+        >
+          {props.title}
+        </a>
+      </h1>
+    </header>
+  )
+}
+
+
+//ë‚´ ì •ë³´ , ë°›ì€ í€ë”© , ë³´ë‚¸ í€ë”©
+function Nav(props) {
+  const lis = []
+  for (let i = 0; i < props.topics.length; i++) {
+    let t = props.topics[i]
+    lis.push(
+      <li key={t.id}>
+        <a
+          id={t.id}
+          href={'/read/' + t.id}
+          onClick={(event) => {
+            event.preventDefault()
+            props.onChangeMode(Number(event.target.id))
+            // ì—¬ê¸°ì„œ í´ë¦­í•œ ë‚´ìš©ì˜ idë¡œ setIdê°€ ì‹¤í–‰ì´ ë˜ì–´ì„œ
+            //ì•„ë˜ì— ì´ idê°’ì„ í†µí•œ ë‚´ìš©ì´ ë³´ì—¬ì§€ê²Œ ë¨
+          }}
+        >
+          {t.title}
+        </a>
+      </li>,
+    )
+  }
+  return (
+    <nav>
+      <ul>{lis}</ul>
+    </nav>
+  )
+}
+
+function Anniversaries(props) {
+  const lis = []
+  for (let i = 0; i < props.anniversaries.length; i++) {
+    let t = props.anniversaries[i]
+    lis.push(
+      <li key={t.anniversaryId}>
+        <a
+          id={t.anniversaryId}
+          href={'/read/' + t.anniversaryId}
+          onClick={(event) => {
+            event.preventDefault()
+            props.onChangeMode(Number(event.target.id))
+          }}
+        >
+          {t.title}
+        </a>
+      </li>
+    )
+  }
+  return (
+    <nav>
+      <ul>{lis}</ul>
+    </nav>
+  )
+}
+
+
+function Modal(props) {
+  return (
+    <article>
+      <h2>Create anniversaries</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault()
+          const title = event.target.title.value
+
+          props.onCreate(title)
+        }}
+      >
+        <p>
+          <input type="text" name="title" placeholder="title" />
+        </p>
+        <p>
+          <input type="submit" value="Create"></input>
+        </p>
+      </form>
+    </article>
+  )
+}
+
+function Create(props) {
+  return (
+    <article>
+      <h2>Create</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault()
+          const title = event.target.title.value
+          const body = event.target.body.value
+          props.onCreate(title, body)
+        }}
+      >
+        <p>
+          <input type="text" name="title" placeholder="title" />
+        </p>
+        <p>
+          <textarea name="body" placeholder="body"></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Create"></input>
+        </p>
+      </form>
+    </article>
+  )
+}
+
+function Update(props) {
+  const [title, setTitle] = useState(props.title)
+  const [body, setBody] = useState(props.body)
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault()
+          const title = event.target.title.value
+          const body = event.target.body.value
+          props.onUpdate(title, body)
+        }}
+      >
+        <p>
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+            value={title}
+            onChange={(event) => {
+              setTitle(event.target.value)
+            }}
+          />
+        </p>
+        <p>
+          <textarea
+            name="body"
+            placeholder="body"
+            value={body}
+            onChange={(event) => {
+              setBody(event.target.value)
+            }}
+          ></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Update"></input>
+        </p>
+      </form>
+    </article>
+  )
+}
+
+const App = () => {
   const [anniversaries, setAnniversaries] = useState([
-    { anniversaryId: 1, title: '100??' },
-    { anniversaryId: 2, title: '' },
-    { anniversaryId: 3, title: '' },
+    { anniversaryId: 1, title: '100ì¼ì…ë‹ˆë‹¤' },
+    { anniversaryId: 2, title: 'ì¡¸ì—…' },
+    { anniversaryId: 3, title: 'ìƒì¼' },
   ])
-  const [topics, setTopics] = useState([
-    {
-      id: 1,
-      title: ' ',
-      body: [
-        {
-          id: 1,
-          name: '',
-          date: '2001.07.26',
-          accountNum: '32424153243413',
-          anniversaries : [
-            { anniversaryId: 1, title: '100??' },
-            { anniversaryId: 2, title: '' },
-            { anniversaryId: 3, title: '' },
-          ]
-        },
-        {
-          id: 2,
-          name: '?',
-          date: '1998.12.26',
-          accountNum: '125463411',
-          anniversaries : [
-            { anniversaryId: 1, title: '100??' },
-            { anniversaryId: 2, title: '' },
-            { anniversaryId: 3, title: '' },
-          ]
-        },
-        {
-          id: 3,
-          name: '??',
-          date: '1383.07.26',
-          accountNum: '12434675',
-          anniversaries : [
-            { anniversaryId: 1, title: '100??' },
-            { anniversaryId: 2, title: '' },
-            { anniversaryId: 3, title: '' },
-          ]
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: ' ?',
-      body: [
-        {
-          id: 1,
-          product: '',
-          Dday: '3',
-          price: '30000',
-          status: '84%',
-        },
-        {
-          id: 2,
-          product: '?',
-          Dday: '31',
-          price: '370000',
-          status: '24%',
-        },
-        {
-          id: 3,
-          product: '',
-          Dday: '6',
-          price: '200000',
-          status: '99%',
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: ' ?',
-      body: [
-        {
-          id: 1,
-          product: '',
-          Dday: '25',
-          price: '70000',
-          status: '68%',
-        },
-        {
-          id: 2,
-          product: '???',
-          Dday: '11',
-          price: '90000',
-          status: '91%',
-        },
-        {
-          id: 3,
-          product: '?',
-          Dday: '2',
-          price: '6000',
-          status: '50%',
-        },
-      ],
-    },
-  ])
-
   const [mode, setMode] = useState('READ')
   const [id, setId] = useState(null)
-
   const [nextId, setNextId] = useState(4)
   const [anniversaryId, setAnniversaryId] = useState(anniversaries.length)
   const [nextAnniversaryId, setNextAnniversaryId] = useState(anniversaryId + 1)
 
+
+  //ì´ ë¶€ë¶„ì´ ì¤‘ê°„ì— contentì—
+  const [topics, setTopics] = useState([
+    {
+      id: 1,
+      title: 'ë‚´ ì •ë³´',
+      body: (
+        <article>
+          <img src="" />
+          <h4>ê¹€í˜„ìˆ˜</h4>
+          <h4>2001.07.26</h4>
+          <h4>ê³„ì¢Œë²ˆí˜¸: 01001010101010101</h4>
+          <button
+            onClick={(event) => {
+              event.preventDefault()
+              setMode('MODAL')
+            }}
+          >
+            +
+          </button>
+          <button /*onClick={}*/>...</button>
+
+          <Anniversaries anniversaries={anniversaries}></Anniversaries>
+          <button>ì¹œêµ¬ ëª©ë¡ ë³´ê¸°</button>
+          <button>ë‚´ê°€ ë‚¨ê¸´ í›„ê¸° history</button>
+        </article>
+      ),
+    },
+    {
+      id: 2,
+      title: 'ë°›ì€ í€ë”©',
+      body: (
+        <article>
+          <div /*map ìœ¼ë¡œ ë°˜ë³µë¬¸ ëŒë¦¬ê¸°*/>
+            <img src=""></img>
+            <button>...</button>
+            <h4>ëª¨ì</h4>
+            <h4>D-6</h4>
+            <h4>30000ì›</h4>
+            <h5>80%</h5>
+          </div>
+        </article>
+      ),
+    },
+    {
+      id: 3,
+      title: 'ë³´ë‚¸ í€ë”©',
+      body: (
+        <article>
+          <div /*map ìœ¼ë¡œ ë°˜ë³µë¬¸ ëŒë¦¬ê¸°*/>
+            <img src=""></img>
+            <button>...</button>
+            <h4>ì‹ ë°œ</h4>
+            <h4>D-3</h4>
+            <h4>20000ì›</h4>
+            <h5>100%</h5>
+          </div>
+        </article>
+      ),
+    },
+  ])
+
   let content = null
-  //?  
+  //ì¤‘ê°„ì— ë³´ì—¬ì§€ëŠ” ë‚´ìš©ë“¤
 
   let contextControl = null
-  //?  ? ? Update , Delete?
+  //ì¤‘ê°„ ë‚´ìš© ì•„ë˜ì— ë³´ì´ëŠ” Update , Deleteë²„íŠ¼
 
 
-  //?   ? 
+  //ì•„ë¬´ ê¸°ëŠ¥ ì—†ì´ ë³´ì—¬ì£¼ëŠ” ëª¨ë“œ
+  //ë§¨ ìœ„ì— ê¸°ë³¸ ë©”ë‰´ë“¤ì€ Navë¥¼ í†µí•´ ë³´ì—¬ì£¼ê³  ìˆê³ 
+  //ì—¬ê¸°ì„œ readëŠ” ê° ë©”ë‰´ì˜ ë‚´ìš©ë“¤ì„ ë³´ì—¬ì¤€ë‹¤ëŠ” ì˜ë¯¸ì´ë‹¤
   if (mode === 'READ') {
-    let title = topics[id].title
-    let body = topics[id].body
-    //?? map ??  
-
-    
-    content = body
-
+    let title,body = null
+    for (let i = 0; i < topics.length; i++) {
+      if (topics[i].id === id) {
+        //ë§¨ ì²˜ìŒì—” nullì´ë¼ ì•„ë¬´ê²ƒë„ ì•ˆ ëœ¸
+        //idê°’ì€ Navì»´í¬ë„ŒíŠ¸ì—ì„œ í´ë¦­ìœ¼ë¡œ ì •í•´ì§
+        title = topics[i].title
+        body = topics[i].body
+      }
+    }
+    content = <Article body={body}></Article>
     contextControl = (
       <>
         <li>
-          <button type="button" onClick={() => { setMode('CREATE')}}>
-            Create
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={() => setMode('UPDATE')}>
-            Update
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            onClick={() => {
-              const newTopics = topics.fillter((value) => {
-                return value.id !== id
-              })
-              setTopics(newTopics)
+          <a
+            href={'/update/' + id}
+            onClick={(event) => {
+              event.preventDefault()
+              //hrefë¥¼ í†µí•´ ë‹¤ë¥¸ ê³³ìœ¼ë¡œ í™”ë©´ì´ ë„˜ì–´ê°€ëŠ” ê²ƒì„ ë§‰ì•„ì¤Œ
+              //hrefëŠ” ë‹¨ì§€ í™”ë©´ì˜ ì´ë™ì„ ëª…ì‹œí•˜ê¸° ìœ„í•œ ëª©ì ìœ¼ë¡œë§Œ ì‚¬ìš©
               setMode('UPDATE')
             }}
           >
-            Delete
-          </button>
+            Update
+          </a>
+        </li>
+        <li>
+          <input
+            type="button"
+            value="Delete"
+            onClick={() => {
+              const newTopics = []
+              for (let i = 0; i < topics.length; i++) {
+                if (topics[i].id !== id) {
+                  newTopics.push(topics[i])
+                }
+              }
+              setTopics(newTopics)
+              setMode('WELCOME')
+            }}
+          />
         </li>
       </>
     )
   } 
+  //
   else if (mode === 'CREATE') {
-    if(id===1){
-
-    }
-    else if(id===2){
-
-    }
-    else if(id===3){
-
-    }
-
     content = (
       <Create
-        onCreate={(title, body) => {
+        //Createì»´í¬ë„ŒíŠ¸ì— ì•„ë˜ í•¨ìˆ˜ë¥¼ ë„˜ê²¨ì„œ ìƒˆë¡œìš´ ëª©ë¡ì„ ë§Œë“¬
+        onCreate={(_title, _body) => {
           const newTopic = { id: nextId, title: _title, body: _body }
           const newTopics = [...topics]
           newTopics.push(newTopic)
           setTopics(newTopics)
-          setMode('READ')
-          // create ? ? read 
+          setMode('READ') 
+          //ìƒˆë¡œ createê°€ ë˜ë©´ ë‹¤ì‹œ readëª¨ë“œë¡œ ë³€ê²½
           setId(nextId)
           setNextId(nextId + 1)
         }}
       ></Create>
     )
   } else if (mode === 'UPDATE') {
-    let title = topics[id].title
-    let body = topics[id].body
-    
+    let title,
+      body = null
+    for (let i = 0; i < topics.length; i++) {
+      if (topics[i].id === id) {
+        title = topics[i].title
+        body = topics[i].body
+      }
+    }
     content = (
       <Update
         title={title}
@@ -216,7 +358,7 @@ const MyPage = () => {
         onCreate={(_title) => {
           const newAnniversary = {
             anniversaryId: nextAnniversaryId,
-            title: _title,
+            title: _title
           }
           const newAnniversaries = [...anniversaries]
           newAnniversaries.push(newAnniversary)
@@ -224,23 +366,26 @@ const MyPage = () => {
           setMode('READ')
           setAnniversaryId(nextAnniversaryId)
           setNextAnniversaryId(nextAnniversaryId + 1)
-          console.log(newAnniversaries) //
-          console.log(anniversaries) //? ?
+          console.log(newAnniversaries) //ë¨
+          console.log(anniversaries)  //ì´ê²Œ ì•ˆë¨
         }}
-      ></Modal>
+      ></Modal> 
     )
+    //ì´ ëª¨ë‹¬ì°½ì´ ë¬¸ì œì„
+    //ì´ê²Œ ê° ê¸°ëŠ¥ë“¤(ë‚´ ì •ë³´,ë°›ì€í€ë””,ë³´ë‚¸í€ë”©)ì— ëœ¨ëŠ” contentë¥¼ ìˆ˜ì •í•˜ëŠ”
+    //ë¶€ë¶„ì¸ë° ì´ê²Œ ì¶”ê°€ê°€ ì•ˆë˜ëŠ” ìƒí™©
   }
 
   return (
     <>
       {/* <Routes>
-            <Route path="/" element={<Main />} />
-    
-            <Route path="/user/:id/received/review" element={<ReviewList />} />
-            <Route path="/user/:id/received/review/create" element={<ReviewCreate />} />
-          </Routes> */}
+        <Route path="/" element={<Main />} />
 
-      <Header/>
+        <Route path="/user/:id/received/review" element={<ReviewList />} />
+        <Route path="/user/:id/received/review/create" element={<ReviewCreate />} />
+      </Routes> */}
+
+      <Header></Header>
       <Nav
         topics={topics}
         onChangeMode={(_id) => {
@@ -251,15 +396,28 @@ const MyPage = () => {
 
       {content}
 
+      
       {/* <Anniversaries anniversaries={anniversaries}></Anniversaries> */}
 
-      {contextControl}
-
-      {/*  ?(create,update,Delete)   
-          ??  ? ? ? 3  ?°?
-            ? ??    */}
+      <ul>
+        <li>
+          <a
+            href="/create"
+            onClick={(event) => {
+              event.preventDefault()
+              setMode('CREATE')
+            }}
+          >
+            Create
+          </a>
+        </li>
+        {contextControl}
+      </ul>
+      {/* ì´ ë²„íŠ¼ë“¤(create,update,Delete)ì€ ì‚¬ì‹¤ ê°€ì¥ 
+      ë©”ì¸ë©”ë‰´ì¸ ë‚´ì •ë³´ ë°›ì€í€ë”© ë³´ë‚¸í€ë”© ì´ê±° 3ê°œë¥¼ ì§€ìš°ê³  ì‚­ì œí•˜ëŠ”ê±°ë¼
+      ì–´ì°¨í”¼ ì•ˆ ì“°ì´ê³  í•„ìš”ì—†ì–´ì„œ ì§€ì›Œì§€ê²Œ ë  ì˜ˆì • */}
     </>
   )
 }
 
-export default MyPage
+export default App
