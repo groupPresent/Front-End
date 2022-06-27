@@ -1,35 +1,36 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { useState } from 'react'
+import MyInfoList from './MyInfoList'
 
-function MyInfo({ name, personalImg, birth, account, anniversaryInfo }) {
+
+const MyInfo = () => {
+  const [info, setInfo] = useState({
+    id: 1,
+    name: '김현수',
+    date: '2001.07.26',
+    accountNum: '32424153243413',
+  })
+
+  const [anniversaries, setAnniversaries] = useState([
+    {
+      anniversaryId: 1,
+      title: '100일입니다',
+    },
+    {
+      anniversaryId: 2,
+      title: '졸업',
+    },
+    {
+      anniversaryId: 3,
+      title: '생일',
+    },
+  ])
+
   return (
     <div>
-      <img src={personalImg} alt={personalImg} />
-      <h2>
-        <Link to={`/myinfo/${name}`}>{name}</Link>
-      </h2>
-      <h2>{name}</h2>
-      <h2>{birth}</h2>
-      <h2>{account}</h2>
-      <button>+</button>
-      <ul>
-        {anniversaryInfo.map((g) => (
-          <li key={g}>{g}</li>
-        ))}
-      </ul>
-      <button>...</button>
-      <button>친구목록 보기</button>
-      <button>내가 남긴 후기</button>
+      <MyInfoList info={info} anniversaries={anniversaries} />
     </div>
-  );
+  )
 }
 
-MyInfo.propTypes = {
-  name: PropTypes.string.isRequired,
-  personalImg: PropTypes.string.isRequired, //url
-  birth: PropTypes.number.isRequired,
-  account: PropTypes.number.isRequired,
-  anniversaryInfo: PropTypes.arrayOf(PropTypes.string).isRequired
-};
-
-export default MyInfo;
+export default MyInfo
