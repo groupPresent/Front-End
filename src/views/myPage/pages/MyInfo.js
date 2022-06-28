@@ -59,6 +59,7 @@ const MyInfo = () => {
         <hr/>
         <h3>기념일</h3>
           <Anniversaries anniversaries={anniversaries} deleteAnniversary={deleteAnniversary}/>
+          <br/>
           <button onClick={() => setMode('CREATE')}>기념일 새로 등록</button>
         </div>
       </div>
