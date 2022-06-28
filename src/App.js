@@ -1,32 +1,24 @@
-import React from 'react'
-import MyPage from './views/myPage/MyPage'
-import { Route, Routes, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useState, useCallback } from 'react'
+
+import { Route, Routes } from 'react-router-dom'
 import Main from './views/mainPage/Main'
-import MyInfo from './views/myPage/pages/MyInfo'
+import MyPage from './views/myPage/MyPage'
+import CustomerService from './views/customerService/CustomerService'
+import ReceivedFunding from './views/myPage/ReceivedFunding'
+import SentFunding from './views/myPage/SentFunding'
 
 const App = () => {
   return (
-    
-    <div>
+    <>
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-
-
-        {/* <Route path="/mypage" element={<MyPage />}></Route>
-        <Route path='/mypage/myinfo' element={<MyInfo/>}/> */}
-        
-        {/* mypage로 접근할 수 있는 경로는 메인페이지에서 아직 구현하지 않았으므로
-        지금은 직접 url창에 입력해서 접근해야 함 */}
-        <Route path="/mypage" element={<MyInfo/>}/> {/* 디폴트가 내 정보이므로 */}
-        
-
-        {/* <Route path='/mypage/funded' element={}/>
-        <Route path='/mypage/funding' element={}/> 
-        받은 펀딩, 보낸펀딩 이것들은 아직 안 만들어놓아서 주석처리*/}
+        <Route path="/" element={<Main />} />
+        <Route path="myPage" element={<MyPage />} />
+        <Route path="customerService" element={<CustomerService />} />
+        <Route path="receivedfunding" element={<ReceivedFunding />} />
+        <Route path="sentfunding" element={<SentFunding />} />
       </Routes>
-
-    
-    </div>
+    </>
   )
 }
 
