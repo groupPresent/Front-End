@@ -35,8 +35,15 @@ const MyInfo = () => {
   ])
   const [anniversaryId, setAnniversaryId] = useState(anniversaries.length)
 
-
   const [mode, setMode] = useState('READ')
+
+  const deleteAnniversary=(item)=>{
+    const newAnniversaries=anniversaries.filter(anniversary=>{
+      return anniversary.id!==item.id
+    })
+    console.log(newAnniversaries)
+    setAnniversaries(newAnniversaries)
+  }
 
   if (mode === 'READ') {
     return (
@@ -51,11 +58,7 @@ const MyInfo = () => {
 
         <hr/>
         <h3>기념일</h3>
-          <ul>
-            {anniversaries.map((anniversary) => (
-              <Anniversaries anniversary={anniversary} setAnniversaries={setAnniversaries} key={anniversary.anniversaryId}/>
-            ))}
-          </ul>
+          <Anniversaries anniversaries={anniversaries} deleteAnniversary={deleteAnniversary}/>
           <button onClick={() => setMode('CREATE')}>기념일 새로 등록</button>
         </div>
       </div>
@@ -79,10 +82,10 @@ const MyInfo = () => {
               date,
               description,
             }
-            //console.log(tmp)
+            console.log(tmp)
             newAnniversary.push(tmp)
-            //console.log(newAnniversary)
-
+            
+            console.log(newAnniversary)
             setAnniversaryId(id) //useState는 비동기로 처리가 되므로 
                                 //id값은 마지막에 수정
             setAnniversaries(newAnniversary)
