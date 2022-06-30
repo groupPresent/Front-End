@@ -1,7 +1,10 @@
 import React from 'react'
 
 const Pagination = ({ total, limit, currentPage, setCurrentPage }) => {
+
   const numPages = Math.ceil(total / limit)
+  //목록의 갯수에 따른 전체 페이지 수
+
   return (
     <div>
       <nav>
@@ -12,7 +15,7 @@ const Pagination = ({ total, limit, currentPage, setCurrentPage }) => {
           <button
             key={i + 1}
             onClick={() => setCurrentPage(i + 1)}
-            aria-current={currentPage === i + 1 ? 'currentPage' : null}
+            // aria-current={currentPage === i + 1 ? 'currentPage' : null}
           >
             {i + 1}
           </button>

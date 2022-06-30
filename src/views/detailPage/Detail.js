@@ -4,31 +4,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import FundingList from './FundingList'
 
-// {
-//     'giftName':'아이폰',
-//     'giftPhoto':'www.~',
-//     'giftFundingRate':'50%',
-//     'currentFundraisingPrice':2500,
-//     'giftFundingPrice':'5000',
-//     'contributorList':[
-//     {'name':'},
-//     {'name':'},
-//     {'name':'},
-//     ],
-//     'contributorNum':5,
-//     'commentList':[
-//     {'commenter':'버민',
-//     'content':'ㅋ왜태어났냐'
-//     },
-//     {'commenter':'버민',
-//     'content':'ㅋ왜태어났냐'
-//     },
-//     {'commenter':'버민',
-//     'content':'ㅋ왜태어났냐'
-//     }
-//     ],
-//     'commentNum':3
-//     }
 const Detail = () => {
   const [fundingPrice, setFundingPrice] = useState()
 
@@ -70,6 +45,7 @@ const Detail = () => {
       {id : 15, name:'임예람'},
       {id : 16, name:'문하늘'},
       {id : 17, name:'김현수'},
+      {id : 18, name:'디자이너분'},
       
     ],
     contributorNum: 10,
@@ -101,7 +77,6 @@ const Detail = () => {
 					width : '70%',
 					height: '50px'
 				}} value={Number(tmpData.giftFundingRate)} max="100"></progress>
-        {/* 펀딩률을 그래픽 형태로 어떻게 보여주지? */}
       </div>
 
       <hr />
