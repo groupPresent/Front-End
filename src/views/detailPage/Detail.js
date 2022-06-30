@@ -53,16 +53,24 @@ const Detail = () => {
     currentFundraisingPrice: 2500,
     giftFundingPrice: 5000,
     contributorList: [
-      { name: '홍길동1' },
-      { name: '홍길동2' },
-      { name: '홍길동3' },
-      { name: '홍길동4' },
-      { name: '홍길동5' },
-      { name: '홍길동6' },
-      { name: '홍길동7' },
-      { name: '홍길동8' },
-      { name: '홍길동9' },
-      { name: '홍길동10' },
+      {id : 1, name: '홍길동1'},
+      {id : 2, name: '홍길동2'},
+      {id : 3, name: '홍길동3'},
+      {id : 4, name: '홍길동4'},
+      {id : 5, name: '홍길동5'},
+      {id : 6, name: '홍길동6'},
+      {id : 7, name: '홍길동7'},
+      {id : 8, name: '홍길동8'},
+      {id : 9, name: '홍길동9'},
+      {id : 10, name: '홍길동10'},
+      {id : 11, name: '조민호'},
+      {id : 12, name:'이현범'},
+      {id : 13, name:'신미림'},
+      {id : 14, name:'박준서'},
+      {id : 15, name:'임예람'},
+      {id : 16, name:'문하늘'},
+      {id : 17, name:'김현수'},
+      
     ],
     contributorNum: 10,
     commentList: [
@@ -115,7 +123,7 @@ const Detail = () => {
 
 
       <div>
-        <FundingList contributorList={tmpData.contributorList} contributorNum={tmpData.contributorNum}></FundingList>
+        <FundingList contributorList={tmpData.contributorList} ></FundingList>
       </div>
     </div>
   )
