@@ -7,6 +7,7 @@ import MyPage from './views/myPage/MyPage'
 import CustomerService from './views/customerService/CustomerService'
 import ReceivedFunding from './views/myPage/ReceivedFunding'
 import SentFunding from './views/myPage/SentFunding'
+import Detail from './views/detailPage/Detail'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="customerService" element={<CustomerService />} />
         <Route path="receivedfunding" element={<ReceivedFunding />} />
         <Route path="sentfunding" element={<SentFunding />} />
+        <Route path="detail" element={<Detail/>} />
       </Routes>
     </>
   )

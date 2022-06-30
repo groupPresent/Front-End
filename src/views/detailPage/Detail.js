@@ -2,50 +2,121 @@ import React from 'react'
 import Navbar from '../common/NavBar'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import FundingList from './FundingList'
 
 // {
-//     ¡±giftName¡±:¡±¾ÆÀÌÆù¡±,
-//     ¡±giftPhoto¡±:¡±www.~¡±,
-//     ¡±giftFundingRate¡±:¡±50%¡±,
-//     ¡±currentFundraisingPrice¡±:2500,
-//     ¡±giftFundingPrice¡±:¡±5000¡±,
-//     ¡±contributorList¡±:[
-//     {¡±name¡±:¡±¡±},
-//     {¡±name¡±:¡±¡±},
-//     {¡±name¡±:¡±¡±},
+//     'giftName':'ì•„ì´í°',
+//     'giftPhoto':'www.~',
+//     'giftFundingRate':'50%',
+//     'currentFundraisingPrice':2500,
+//     'giftFundingPrice':'5000',
+//     'contributorList':[
+//     {'name':'},
+//     {'name':'},
+//     {'name':'},
 //     ],
-//     ¡±contributorNum¡±:5,
-//     ¡±commentList¡±:[
-//     {¡±commenter¡±:¡±¹ö¹Î¡±,
-//     ¡±content¡±:¡±¤»¿ÖÅÂ¾î³µ³Ä¡±
+//     'contributorNum':5,
+//     'commentList':[
+//     {'commenter':'ë²„ë¯¼',
+//     'content':'ã…‹ì™œíƒœì–´ë‚¬ëƒ'
 //     },
-//     {¡±commenter¡±:¡±¹ö¹Î¡±,
-//     ¡±content¡±:¡±¤»¿ÖÅÂ¾î³µ³Ä¡±
+//     {'commenter':'ë²„ë¯¼',
+//     'content':'ã…‹ì™œíƒœì–´ë‚¬ëƒ'
 //     },
-//     {¡±commenter¡±:¡±¹ö¹Î¡±,
-//     ¡±content¡±:¡±¤»¿ÖÅÂ¾î³µ³Ä¡±
+//     {'commenter':'ë²„ë¯¼',
+//     'content':'ã…‹ì™œíƒœì–´ë‚¬ëƒ'
 //     }
 //     ],
-//     ¡±commentNum¡±:3
+//     'commentNum':3
 //     }
 const Detail = () => {
+  const [fundingPrice, setFundingPrice] = useState()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/user/funding/{fundingId}')
+        //ì—¬ê¸´ ì§€ê¸ˆ ë‹¹ì¥ì€ ë¬´ì¡°ê±´ ì—ëŸ¬ê°€ ë°œìƒ
       } catch (e) {
         console.log(e)
       }
     }
 
     fetchData()
+  }, [])
 
-  },[])
+  let tmpData = {
+    giftName: 'ì•„ì´í°',
+    giftPhoto:
+      'http://img.segye.com/content/image/2019/12/24/20191224513213.jpg',
+    giftFundingRate: '50',
+    currentFundraisingPrice: 2500,
+    giftFundingPrice: 5000,
+    contributorList: [
+      { name: 'í™ê¸¸ë™1' },
+      { name: 'í™ê¸¸ë™2' },
+      { name: 'í™ê¸¸ë™3' },
+      { name: 'í™ê¸¸ë™4' },
+      { name: 'í™ê¸¸ë™5' },
+      { name: 'í™ê¸¸ë™6' },
+      { name: 'í™ê¸¸ë™7' },
+      { name: 'í™ê¸¸ë™8' },
+      { name: 'í™ê¸¸ë™9' },
+      { name: 'í™ê¸¸ë™10' },
+    ],
+    contributorNum: 10,
+    commentList: [
+      { commenter: 'ë²„ë¯¼', content: 'ã…‹ì™œíƒœì–´ë‚¬ëƒ' },
+      { commenter: 'ë²„ë¯¼', content: 'ã…‹ì™œíƒœì–´ë‚¬ëƒ' },
+      { commenter: 'ë²„ë¯¼', content: 'ã…‹ì™œíƒœì–´ë‚¬ëƒ' },
+    ],
+    commentNum: 3,
+  }
 
+  const onChange = (e) => {
+    setFundingPrice(e.target.value)
+  }
+
+  let text = `í€ë”© ìµœì†Œ ê¸ˆì•¡ì€ ${tmpData.giftFundingPrice}ì› ì…ë‹ˆë‹¤`
   return (
     <div>
-      <Navbar />
+      <div>
+        <h1>{tmpData.giftName}</h1>
+        <img src={tmpData.giftPhoto} alt="ì„ ë¬¼"></img>
+      </div>
+
+      <hr />
+
+      <div>
+        <h2> í€ë”©ë¥  : {tmpData.giftFundingRate}%</h2>
+        <progress style={{
+					width : '70%',
+					height: '50px'
+				}} value={Number(tmpData.giftFundingRate)} max="100"></progress>
+        {/* í€ë”©ë¥ ì„ ê·¸ë˜í”½ í˜•íƒœë¡œ ì–´ë–»ê²Œ ë³´ì—¬ì£¼ì§€? */}
+      </div>
+
+      <hr />
+
+
+      <div>
+        <input placeholder={text} value={fundingPrice} onChange={onChange} />ì›
+        <br/>
+        <br/>
+        <button
+          onClick={() => {
+            //postë©”ì†Œë“œ
+            setFundingPrice(0)
+          }}
+        >
+          í€ë”©í•˜ê¸°
+        </button>
+      </div>
+
+
+      <div>
+        <FundingList contributorList={tmpData.contributorList} contributorNum={tmpData.contributorNum}></FundingList>
+      </div>
     </div>
   )
 }
