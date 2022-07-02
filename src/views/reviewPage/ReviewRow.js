@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"; 
-import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios' 
+import ReviewPage from "./ReviewPage"
 
 export default function ReviewRow(props) {
   const [review, setReview] = useState({});
@@ -15,21 +15,33 @@ export default function ReviewRow(props) {
     axios.put('/user/funding/review', data)    
     .then((response) => {    
         console.log(response)  
-        // modeEvent('update');
+        return (
+          <Routes>
+            <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
+          </Routes>
+          // <ReviewPage mode={"update"}/>
+          // <Link to="/about">About</Link>
+        )
     })
     .catch(() => {
-        console.log('통신 실패');
+        console.log('update 실패');
+        return(
+          <Routes>
+            <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
+          </Routes>
+        )
     })
   }
 
   const deleteReview = (review) => {
+    console.log('i want delete',review)
     axios.put('/user/funding/review')    
     .then((response) => {    
-        console.log(response)  
-        // modeEvent('delete');
+      return(<ReviewPage mode={"delete"}/>)
     })
     .catch(() => {
-        console.log('통신 실패');
+      console.log('delete 실패');
+      return(<ReviewPage mode={"delete"}/>)
     })
   }
   

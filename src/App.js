@@ -243,7 +243,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/user/funding/review" element={<ReviewPage />} />
+        <Route path="/user/funding/review" element={<ReviewPage mode='get'/>} />
       </Routes>
       <Header></Header>
       <Nav topics={topics} onChangeMode={(_id)=>{

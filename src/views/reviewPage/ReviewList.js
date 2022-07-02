@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import ReviewRow from "./ReviewRow";
 import axios from 'axios';
 
-// const API_URL = '/user/funding/review'
-
 export default function ReviewList(reviewList) {
   return (
     <>

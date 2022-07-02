@@ -3,9 +3,8 @@ import axios from 'axios';
 import ReviewList from "./ReviewList";
 import ReviewWrite from "./Write";
 
-// console.log("hi");
-
-export default function ReviewPage(_mode) {
+export default function ReviewPage(props) {
+    console.log("mode is",props.mode)
     const reviews = {
         "reviewList" : [{
           idx: "1",
@@ -26,7 +25,7 @@ export default function ReviewPage(_mode) {
       }; 
 
     const API_URL = '/user/funding/review'
-    const [mode, setMode] = useState(_mode); // get, post, update, delete
+    const [mode, setMode] = useState(props.mode); // get, post, update, delete
     const [reviewList, setReviewList] = useState([]);
     const [limit, setLimit] = useState(0);
 
@@ -34,14 +33,13 @@ export default function ReviewPage(_mode) {
     useEffect(() => {
         axios.get(API_URL)    
         .then((reviews) => {   
-            console.log(reviews.reviewList);
             setReviewList(reviews.reviewList);  
             setMode('get');
         })
         .catch(() => {
-            // console.log('통신 실패');    
+            console.log(props.mode, '실패');    
             setReviewList(reviews.reviewList); 
-            setMode('update');
+            setMode(props.mode);
         })
     }, [limit])
 
@@ -55,10 +53,13 @@ export default function ReviewPage(_mode) {
             <ReviewWrite/>// modeEvent={setMode}
         )
     } else if (mode === 'update') {
+        console.log('update')
         return (
             <ReviewWrite review={reviewList[0]}/>
         )
-    } else {
+    } else if (mode === 'delete') {
         console.log('delete')
+    } else {
+        console.log('nothing')
     }
 }
