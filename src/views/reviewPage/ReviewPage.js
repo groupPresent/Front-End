@@ -5,7 +5,7 @@ import ReviewWrite from "./Write";
 
 // console.log("hi");
 
-export default function ReviewPage() {
+export default function ReviewPage(_mode) {
     const reviews = {
         "reviewList" : [{
           idx: "1",
@@ -26,7 +26,7 @@ export default function ReviewPage() {
       }; 
 
     const API_URL = '/user/funding/review'
-    const [mode, setMode] = useState(''); // get, post, update, delete
+    const [mode, setMode] = useState(_mode); // get, post, update, delete
     const [reviewList, setReviewList] = useState([]);
     const [limit, setLimit] = useState(0);
 
@@ -41,7 +41,7 @@ export default function ReviewPage() {
         .catch(() => {
             // console.log('통신 실패');    
             setReviewList(reviews.reviewList); 
-            setMode('get');
+            setMode('update');
         })
     }, [limit])
 
@@ -56,7 +56,9 @@ export default function ReviewPage() {
         )
     } else if (mode === 'update') {
         return (
-            <ReviewWrite />
+            <ReviewWrite review={reviewList[0]}/>
         )
+    } else {
+        console.log('delete')
     }
 }
