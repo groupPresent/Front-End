@@ -1,42 +1,21 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ReviewRow from "./ReviewRow";
+import axios from 'axios';
 
-export default function ReviewList(props) {
-  // const [reviews, setReview] = useState();
-  const reviews = [
-    {
-      idx: "1",
-      name: "아이폰",
-      photo: "/",
-      star: "5점",
-      price: 1000000,
-      review: "아이폰 좋앙"
-    },
-    { 
-      idx: "2", 
-      name: "맥북", 
-      photo: "/", 
-      star: "4점",
-      price: 5000000, 
-      review: "m2칩 나왔대" 
-    }
-  ]; //API에서 받아오는 듯
+// const API_URL = '/user/funding/review'
 
+export default function ReviewList(reviewList) {
   return (
     <>
       <h1>Leview list</h1>
       <ul className="reviewListView">
-        {!reviews.length && <h4>선물 후기가 없습니다.</h4>}
-        {reviews?.map((review) => {
+        {!reviewList.reviewList.length && <h4>선물 후기가 없습니다.</h4>}
+        {reviewList.reviewList?.map((review) => {
           return (
             <ReviewRow
+              key={review.idx}
               review={review}
-              index={review.idx}
-              giftName={review.name}
-              giftPhoto={review.photo}
-              star={review.star}
-              price={review.price}
             />
           );
         })}

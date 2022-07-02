@@ -3,8 +3,9 @@ import { useState, useCallback } from "react";
 
 import { Route, Routes } from "react-router-dom";
 import Main from "./views/mainPage/Main";
+import ReviewPage from "./views/reviewPage/ReviewPage";
 import ReviewList from "./views/reviewPage/ReviewList";
-import ReviewCreate from "./views/reviewPage/Create";
+import ReviewCreate from "./views/reviewPage/Write";
 
 function Article(props){
   return <article>
@@ -242,9 +243,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Main />} />
-
-        <Route path="/user/funding/review" element={<ReviewList />} />
-        <Route path="/user/funding/review/create" element={<ReviewCreate />} />
+        <Route path="/user/funding/review" element={<ReviewPage />} />
       </Routes>
       <Header></Header>
       <Nav topics={topics} onChangeMode={(_id)=>{

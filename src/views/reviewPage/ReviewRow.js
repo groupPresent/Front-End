@@ -1,17 +1,44 @@
+import React, { useEffect, useState } from "react"; 
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios' 
 
-export default function ReviewRow({ review }) {
+export default function ReviewRow(props) {
+  const [review, setReview] = useState({});
+  const [limit, setLimit] = useState(0);
 
+  useEffect(() => {
+    setReview(props.review)
+  }, [limit])
+
+  const updateReview = (data) => {
+    axios.put('/user/funding/review', data)    
+    .then((response) => {    
+        console.log(response)  
+        // modeEvent('update');
+    })
+    .catch(() => {
+        console.log('통신 실패');
+    })
+  }
+
+  const deleteReview = (review) => {
+    axios.put('/user/funding/review')    
+    .then((response) => {    
+        console.log(response)  
+        // modeEvent('delete');
+    })
+    .catch(() => {
+        console.log('통신 실패');
+    })
+  }
+  
   return (
     <li className="review-row">
       <div>
         <div>
-          <Link to={`/user/funding/review/create`} key={review.idx} props={review.idx}>
-            <button>수정</button>
-          </Link>
-          <Link to={`/user/funding/review/create`} key={review.idx} props={review.idx}>
-            <button>삭제</button>
-          </Link>
+          <button onClick={updateReview(review.idx)}>수정</button>
+          <button onClick={deleteReview(review.idx)}>삭제</button>
         </div>
         <div>
           <img className="gift-img" src={review.photo} />
