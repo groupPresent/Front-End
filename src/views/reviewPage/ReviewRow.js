@@ -16,9 +16,11 @@ export default function ReviewRow(props) {
     .then((response) => {    
         console.log(response)  
         return (
-          <Routes>
-            <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
-          </Routes>
+          <>
+          </>
+          // <Routes>
+          //   <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
+          // </Routes>
           // <ReviewPage mode={"update"}/>
           // <Link to="/about">About</Link>
         )
@@ -26,9 +28,11 @@ export default function ReviewRow(props) {
     .catch(() => {
         console.log('update 실패');
         return(
-          <Routes>
-            <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
-          </Routes>
+          <>
+            {/* <Routes>
+              <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
+            </Routes> */}
+          </>
         )
     })
   }
@@ -49,8 +53,8 @@ export default function ReviewRow(props) {
     <li className="review-row">
       <div>
         <div>
-          <button onClick={updateReview(review.idx)}>수정</button>
-          <button onClick={deleteReview(review.idx)}>삭제</button>
+          <button onClick={event => updateReview(review.idx)}>수정</button>
+          <button onClick={event => deleteReview(review.idx)}>삭제</button>
         </div>
         <div>
           <img className="gift-img" src={review.photo} />
