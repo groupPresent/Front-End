@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState, useCallback } from "react"; 
 import { Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios' 
 import ReviewPage from "./ReviewPage"
@@ -7,45 +7,34 @@ export default function ReviewRow(props) {
   const [review, setReview] = useState({});
   const [limit, setLimit] = useState(0);
 
+  const changeMode = useCallback(type => {
+    props.modeEvent(type)
+  }, [props.modeEvent])
+
   useEffect(() => {
     setReview(props.review)
   }, [limit])
 
-  const updateReview = (data) => {
-    axios.put('/user/funding/review', data)    
+  const updateReview = (review) => {
+    axios.put('/user/funding/review', review)    
     .then((response) => {    
         console.log(response)  
-        return (
-          <>
-          </>
-          // <Routes>
-          //   <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
-          // </Routes>
-          // <ReviewPage mode={"update"}/>
-          // <Link to="/about">About</Link>
-        )
+        changeMode('update');
     })
     .catch(() => {
-        console.log('update 실패');
-        return(
-          <>
-            {/* <Routes>
-              <Route path="/user/funding/review" element={<ReviewPage mode={"update"} />} />
-            </Routes> */}
-          </>
-        )
+        console.log('i want update',review);
+        changeMode('update');
     })
   }
 
   const deleteReview = (review) => {
-    console.log('i want delete',review)
     axios.put('/user/funding/review')    
     .then((response) => {    
-      return(<ReviewPage mode={"delete"}/>)
+      changeMode('get');
     })
     .catch(() => {
-      console.log('delete 실패');
-      return(<ReviewPage mode={"delete"}/>)
+      console.log('i want delete',review)
+      changeMode('get');
     })
   }
   
@@ -54,6 +43,7 @@ export default function ReviewRow(props) {
       <div>
         <div>
           <button onClick={event => updateReview(review.idx)}>수정</button>
+          {/* <button onClick={event => ReviewPage}>수정</button> */}
           <button onClick={event => deleteReview(review.idx)}>삭제</button>
         </div>
         <div>

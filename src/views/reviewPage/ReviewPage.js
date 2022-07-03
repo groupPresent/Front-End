@@ -5,6 +5,11 @@ import ReviewWrite from "./Write";
 
 export default function ReviewPage(props) {
     console.log("mode is",props.mode)
+    console.log("limit is",props.limit_num)
+    if (props.limit_num !== 'false') {
+        console.log('limit yes')
+        setLimit = limit += 1;
+    }
     const reviews = {
         "reviewList" : [{
           idx: "1",
@@ -40,13 +45,15 @@ export default function ReviewPage(props) {
             console.log(props.mode, '실패');    
             setReviewList(reviews.reviewList); 
             setMode(props.mode);
+
+            // setMode('post');
         })
     }, [limit])
 
 
     if (mode === 'get') {
         return (
-            <ReviewList reviewList={reviewList}/>// modeEvent={setMode}
+            <ReviewList reviewList={reviewList} modeEvent={setMode}/>// modeEvent={setMode}
         )
     } else if (mode === 'post') {
         return (
@@ -55,7 +62,7 @@ export default function ReviewPage(props) {
     } else if (mode === 'update') {
         console.log('update')
         return (
-            <ReviewWrite review={reviewList[0]}/>
+            <ReviewWrite review={reviewList[0]} modeEvent={setMode}/>
         )
     } else if (mode === 'delete') {
         console.log('delete')
