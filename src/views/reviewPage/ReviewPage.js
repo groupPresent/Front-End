@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"; 
 import axios from 'axios'; 
 import ReviewList from "./ReviewList";
-import ReviewWrite from "./Write";
+import Write from "./Write";
 
 export default function ReviewPage(props) {
     console.log("mode is",props.mode)
@@ -45,24 +45,22 @@ export default function ReviewPage(props) {
             console.log(props.mode, '실패');    
             setReviewList(reviews.reviewList); 
             setMode(props.mode);
-
-            // setMode('post');
         })
     }, [limit])
 
 
     if (mode === 'get') {
         return (
-            <ReviewList reviewList={reviewList} modeEvent={setMode}/>// modeEvent={setMode}
+            <ReviewList url={API_URL} reviewList={reviewList} modeEvent={setMode}/>// modeEvent={setMode}
         )
     } else if (mode === 'post') {
         return (
-            <ReviewWrite/>// modeEvent={setMode}
+            <Write url={API_URL} type={"reivew"}/>// modeEvent={setMode}
         )
     } else if (mode === 'update') {
         console.log('update')
         return (
-            <ReviewWrite review={reviewList[0]} modeEvent={setMode}/>
+            <Write url={API_URL} type={"reivew"} review={reviewList[0]} modeEvent={setMode}/>
         )
     } else if (mode === 'delete') {
         console.log('delete')

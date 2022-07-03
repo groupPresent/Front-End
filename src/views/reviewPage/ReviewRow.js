@@ -3,8 +3,12 @@ import { Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios' 
 import ReviewPage from "./ReviewPage"
 
+  const [review, setReview] = useState({});
+
+
 export default function ReviewRow(props) {
   const [review, setReview] = useState({});
+  const [url, setUrl] = useState('');
   const [limit, setLimit] = useState(0);
 
   const changeMode = useCallback(type => {
@@ -12,11 +16,12 @@ export default function ReviewRow(props) {
   }, [props.modeEvent])
 
   useEffect(() => {
-    setReview(props.review)
+    setReview(props.review);
+    setUrl(props.url);
   }, [limit])
 
   const updateReview = (review) => {
-    axios.put('/user/funding/review', review)    
+    axios.put(url, review)    
     .then((response) => {    
         console.log(response)  
         changeMode('update');
@@ -28,7 +33,7 @@ export default function ReviewRow(props) {
   }
 
   const deleteReview = (review) => {
-    axios.put('/user/funding/review')    
+    axios.put(url)    
     .then((response) => {    
       changeMode('get');
     })
