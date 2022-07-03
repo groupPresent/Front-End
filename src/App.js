@@ -8,6 +8,9 @@ import CustomerService from './views/customerService/CustomerService'
 import ReceivedFunding from './views/myPage/ReceivedFunding'
 import SentFunding from './views/myPage/SentFunding'
 import Detail from './views/detailPage/Detail'
+import ReviewPage from "./views/reviewPage/ReviewPage";
+import ReviewList from "./views/reviewPage/ReviewList";
+import ReviewCreate from "./views/reviewPage/Write";
 
 const App = () => {
   return (
@@ -19,6 +22,7 @@ const App = () => {
         <Route path="receivedfunding" element={<ReceivedFunding />} />
         <Route path="sentfunding" element={<SentFunding />} />
         <Route path="detail" element={<Detail/>} />
+        <Route path="/user/funding/review" element={<ReviewPage mode='get' limit_num='false'/>} />
       </Routes>
     </>
   )
