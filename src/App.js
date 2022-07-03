@@ -6,6 +6,8 @@ import Main from "./views/mainPage/Main";
 import "./styles.css";
 import Friends from "./views/friendPage/Friends";
 import FriendTab from "./views/friendPage/FriendTab";
+import Tab1 from "./views/friendPage/Tab1";
+import Tab2 from "./views/friendPage/Tab2";
 
 const App = () => {
   return (
@@ -14,9 +16,11 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/" element={<Friends />} />
         <Route path="/friendtab" element={<FriendTab />} />
+        <Route path="/Tab1" element={<Tab1 />} />
+        <Route path="/Tab2" element={<Tab2 />} />
       </Routes>
     </>
   );
-};
+};   
 
 export default App;
