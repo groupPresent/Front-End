@@ -27,7 +27,7 @@ const App = () => {
         <Route path="sentfunding" element={<SentFunding />} />
         <Route path="detail" element={<Detail/>} />
         <Route path="/user/funding/review" element={<ReviewPage mode='get' limit_num='false'/>} />
-        <Route path="/" element={<Friends />} />
+        <Route path="/friends" element={<Friends />} />
         <Route path="/friendtab" element={<FriendTab />} />
 
       </Routes>
