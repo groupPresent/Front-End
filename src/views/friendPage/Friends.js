@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsStar, BsStarFill } from "react-icons/bs";
+// import { BsStar, BsStarFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const Friends = () => {
@@ -127,10 +127,10 @@ const Friends = () => {
                 <div>
                   <img src={item.photoUrl} />
                   <Link to="/friendtab">{item.friendName}</Link>
-                  <BsStarFill
+                  <button
                     key={item.friendId}
                     onClick={() => onFavorite(item.friendId)}
-                  />
+                  >star fill</button>
                 </div>
               )
           )}
@@ -142,11 +142,13 @@ const Friends = () => {
               <div>
                 <img src={item.photoUrl} />
                 <Link to="/friendtab">{item.friendName}</Link>
-                <BsStar
+                <button
                   key={item.friendId}
                   onChange={onChange}
                   onClick={() => onFavorite(item.friendId)}
-                />
+                >
+                star empty
+                </button>
               </div>
             )
         )}
