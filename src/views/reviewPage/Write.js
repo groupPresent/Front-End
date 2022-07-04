@@ -31,18 +31,18 @@ export default function Write(props) {
       <h1>Create {props.url}</h1>
       <form
         className="create-form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          const img = event.target[0].files[0];
-          const formData = new FormData();
-          // formData.append('reviewId', event.target.id.value);
-          formData.append('reviewPhoto', img);
-          formData.append('reviewTitle', event.target.name.value);
-          formData.append('reviewPrice', event.target.price.value);
-          formData.append('reviewStar', event.target.star.value);
-          formData.append('reviewContent', event.target.review.value);
-          submitWriting(formData);
-        }}
+          onSubmit={(event) => {
+            event.preventDefault();
+            const img = event.target[0].files[0];
+            const formData = new FormData();
+            // formData.append('reviewId', event.target.id.value);
+            formData.append('reviewPhoto', img);
+            formData.append('reviewTitle', event.target.name.value);
+            formData.append('reviewPrice', event.target.price.value);
+            formData.append('reviewStar', event.target.star.value);
+            formData.append('reviewContent', event.target.review.value);
+            submitWriting(formData);
+          }}
       >
         <div>
           <div className="gift-info-wrap">
@@ -56,16 +56,16 @@ export default function Write(props) {
                   type="text"
                   name="name"
                   placeholder="선물명을 적어주세요."
-                  value={originWriting? originWriting.name : ''}
+                  defaultValue={originWriting? originWriting.name : ''}
                 />
               </div>
               <div className="gift-star">
                 <div>별점</div>
-                <input type="text" name="star" placeholder="별점을 적어주세요." value={originWriting? originWriting.star : ''}/>
+                <input type="text" name="star" placeholder="별점을 적어주세요." defaultValue={originWriting? originWriting.star : ''}/>
               </div>
               <div className="gift-price">
                 <div>가격</div>
-                <input type="number" name="price" placeholder="가격을 적어주세요." value={originWriting? originWriting.price : ''}/>
+                <input type="number" name="price" placeholder="가격을 적어주세요." defaultValue={originWriting? originWriting.price : ''}/>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function Write(props) {
               type="textarea"
               name="review"
               placeholder="후기를 남겨주세요."
-              value={originWriting? originWriting.review : ''}
+              defaultValue={originWriting? originWriting.review : ''}
             />
           </div>
         </div>

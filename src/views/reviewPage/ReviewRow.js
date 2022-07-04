@@ -3,8 +3,6 @@ import { Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios' 
 import ReviewPage from "./ReviewPage"
 
-  const [review, setReview] = useState({});
-
 
 export default function ReviewRow(props) {
   const [review, setReview] = useState({});
@@ -48,7 +46,6 @@ export default function ReviewRow(props) {
       <div>
         <div>
           <button onClick={event => updateReview(review.idx)}>수정</button>
-          {/* <button onClick={event => ReviewPage}>수정</button> */}
           <button onClick={event => deleteReview(review.idx)}>삭제</button>
         </div>
         <div>
