@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useCallback } from "react";
-
 import { Route, Routes } from "react-router-dom";
-import './myPage.css';
+import '../common/modal.css'
 import Modal from '../common//Modal';
 
 function Article(props){
@@ -11,7 +10,7 @@ function Article(props){
     </article>
   }
   
-  
+
   
   function Header(props){
     return <header>
@@ -31,7 +30,7 @@ function Article(props){
         <a id={t.id} href={'/read/'+t.id} onClick={event=>{
           event.preventDefault();
           props.onChangeMode(Number(event.target.id));
-        }}>{t.title}</a>
+        }}>{t.title} | {t.body} | {t.date}</a>
       </li>)
        // console.log(props.topics.length);
     }
@@ -52,25 +51,38 @@ function Article(props){
       <form onSubmit={event=>{
         event.preventDefault();
         const title = event.target.title.value;
-       
-        props.onCreate(title, );
+        const body = event.target.body.value;
+        const date = event.target.date.value;
+        props.onCreate(title, body, date);
       }}>
-        <p><input type="text" name="title" placeholder="title"/></p>
+        <p><input type="text" name="title" placeholder="기념일 이름"/></p>
+        <p><input type="text" name="date" placeholder="기념일 날짜"/></p>
+        <p><input type="text" name="body" placeholder="기념일 내용"/></p>
         <p><input type="submit" value="Create"></input></p>
       </form>
     </article>
   }
   function Update(props){
     const [title, setTitle] = useState(props.title);
+    const [body, setBody] = useState(props.body);
+    const [date, setDate] = useState(props.date);
     return <article>
       <h2>Update</h2>
       <form onSubmit={event=>{
         event.preventDefault();
         const title = event.target.title.value;
-        props.onUpdate(title, );
+        const body = event.target.body.value;
+        const date = event.target.date.value;
+        props.onUpdate(title, body, date);
       }}>
-        <p><input type="text" name="title" placeholder="title" value={title} onChange={event=>{
+        <p><input type="text" name="title" placeholder="기념일 이름" value={title} onChange={event=>{
           setTitle(event.target.value);
+        }}/></p>
+        <p><input type="text" name="body" placeholder="기념일 내용" value={body} onChange={event=>{
+          setBody(event.target.value);
+        }}/></p>
+        <p><input type="text" name="date" placeholder="기념일 날짜" value={date} onChange={event=>{
+          setDate(event.target.value);
         }}/></p>
         <p><input type="submit" value="Update"></input></p>
       </form>
@@ -78,6 +90,8 @@ function Article(props){
   }
 
   const MyPage = () => {
+
+    
     let nav = null;
     const [anniversaries, setAnniversaries] = useState([
       {anniversaryId:1, title:'100일입니다'},
@@ -91,21 +105,65 @@ function Article(props){
     const [nextAnniversaryId, setNextAnniversaryId] = useState(anniversaryId + 1);
   
     const [topics, setTopics] = useState([
-      {id:1, title:'남자친구랑 100일', body:null},
-      {id:2, title:'퇴사', body:null},
-      {id:3, title:'졸업', body:null}
+      {id:1, title:'남자친구랑 100일', body:'남친이랑 100일입니다!', date:'0903'},
+      {id:2, title:'퇴사', body:'퇴사일이에요', date:'0303'},
+      {id:3, title:'졸업', body:'졸업이다!', date:'0202'}
     ]);
-    
+     let contextControl = null;
     let content = null;
-    let contextControl = null;
+   
     if(mode === 'READ'){
-      let title, body = null;
+      let title, body, date = null;
       for(let i=0; i<topics.length; i++){
         if(topics[i].id === id){
           title = topics[i].title;
+          body = topics[i].body;
+          date = topics[i].date;
         }
       }
-      content = <Article  body={body}></Article>
+      //content = <Article  body={body}></Article>
+      
+    } else if(mode === 'CREATE'){
+      content = <Create onCreate={(_title, _body, _date)=>{
+        const newTopic = {id:nextId, title:_title, body:_body, date:_date}
+        const newTopics = [...topics]
+        newTopics.push(newTopic);
+        setTopics(newTopics);
+        setMode('NAV');
+        setId(nextId);
+        setNextId(nextId+1);
+      }}></Create>
+    } else if(mode === 'UPDATE'){
+      let title, body, date = null;
+      for(let i=0; i<topics.length; i++){
+        if(topics[i].id === id){
+          title = topics[i].title;
+          body = topics[i].body;
+          date = topics[i].date;
+        }
+      }
+      content = <Update title={title} body={body} date = {date} onUpdate={(title, body, date)=>{
+        const newTopics = [...topics]
+        const updatedTopic = {id:id, title:title, body:body, date:date}
+        for(let i=0; i<newTopics.length; i++){
+          if(newTopics[i].id === id){
+            newTopics[i] = updatedTopic;
+            break;
+          }
+        }
+  
+  
+        setTopics(newTopics);
+        setMode('NAV');
+      }}></Update>
+    }
+    else if(mode === 'NAV'){
+     nav = <Nav topics={topics} onChangeMode={(_id)=>{
+        setMode('ACLICKED');
+        setId(_id);
+      }}></Nav>
+    } 
+    else if (mode === 'ACLICKED'){
       contextControl = <>
         <li><button class = "updateButton" href={'/update/'+id} onClick={event=>{
           event.preventDefault();
@@ -122,44 +180,7 @@ function Article(props){
           setMode('NAV');
         }} /></li>
       </>
-    } else if(mode === 'CREATE'){
-      content = <Create onCreate={(_title, _body)=>{
-        const newTopic = {id:nextId, title:_title, body:_body}
-        const newTopics = [...topics]
-        newTopics.push(newTopic);
-        setTopics(newTopics);
-        setMode('NAV');
-        setId(nextId);
-        setNextId(nextId+1);
-      }}></Create>
-    } else if(mode === 'UPDATE'){
-      let title, body = null;
-      for(let i=0; i<topics.length; i++){
-        if(topics[i].id === id){
-          title = topics[i].title;
-        }
-      }
-      content = <Update title={title} body={body} onUpdate={(title, body)=>{
-        const newTopics = [...topics]
-        const updatedTopic = {id:id, title:title, body:body}
-        for(let i=0; i<newTopics.length; i++){
-          if(newTopics[i].id === id){
-            newTopics[i] = updatedTopic;
-            break;
-          }
-        }
-  
-  
-        setTopics(newTopics);
-        setMode('NAV');
-      }}></Update>
     }
-    else if(mode === 'NAV'){
-     nav = <Nav topics={topics} onChangeMode={(_id)=>{
-        setMode('READ');
-        setId(_id);
-      }}></Nav>
-    } 
   
 const [modalOpen, setModalOpen] = useState(false);
 
@@ -174,8 +195,10 @@ const [modalOpen, setModalOpen] = useState(false);
       <>
       
      
+     
+     
       <Modal open={modalOpen} close={closeModal} header="Modal heading">
-      </Modal>
+      </Modal> 
    
         <Header></Header>
 
@@ -188,6 +211,14 @@ const [modalOpen, setModalOpen] = useState(false);
         <h2>이름</h2>
         <h2>생년월일</h2>
         <h2>계좌번호</h2>
+        
+          <button href="/create" onClick={event=>{
+            event.preventDefault();
+            setMode('CREATE');
+          }}>기념일 등록하기</button>
+          <br></br>
+          {contextControl}
+      
         <button onClick={event=>{
             event.preventDefault();
             setMode('NAV');
@@ -195,13 +226,7 @@ const [modalOpen, setModalOpen] = useState(false);
         {nav}
         {content}
 
-        <ul>
-          <li><button href="/create" onClick={event=>{
-            event.preventDefault();
-            setMode('CREATE');
-          }}>기념일 등록하기</button></li>
-          {contextControl}
-        </ul>
+        
         
         <button onClick={openModal}>탈퇴하기</button>
 

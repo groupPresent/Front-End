@@ -11,6 +11,10 @@ import Detail from './views/detailPage/Detail'
 import ReviewPage from "./views/reviewPage/ReviewPage";
 import ReviewList from "./views/reviewPage/ReviewList";
 import ReviewCreate from "./views/reviewPage/Write";
+import Friends from "./views/friendPage/Friends";
+import FriendTab from "./views/friendPage/FriendTab";
+import Tab1 from "./views/friendPage/Tab1";
+import Tab2 from "./views/friendPage/Tab2";
 
 const App = () => {
   return (
@@ -23,9 +27,13 @@ const App = () => {
         <Route path="sentfunding" element={<SentFunding />} />
         <Route path="detail" element={<Detail/>} />
         <Route path="/user/funding/review" element={<ReviewPage mode='get' limit_num='false'/>} />
+        <Route path="/friend" element={<Friends />} />
+        <Route path="/friendtab" element={<FriendTab />} />
+        <Route path="/Tab1" element={<Tab1 />} />
+        <Route path="/Tab2" element={<Tab2 />} />
       </Routes>
     </>
-  )
-}
+  );
+};   
 
 export default App
