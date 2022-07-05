@@ -62,7 +62,7 @@ export default function ReviewPage(props) {
         console.log('update')
         console.log(reviewId)
         return (
-            <Write url={API_URL} type={"reivew"} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
+            <Write url={API_URL} type={"review"} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
         )
     } else if (mode === 'delete') {
         console.log('delete')

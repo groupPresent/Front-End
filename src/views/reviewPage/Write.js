@@ -15,7 +15,6 @@ export default function Write(props) {
       setoriginWriting(props.review);
       setUrl(props.url);
       setType(props.type);
-      // if (type )
     }, [limit])
 
     const changeMode = useCallback(type => {
@@ -28,11 +27,12 @@ export default function Write(props) {
             console.log(data)  
         })
         .catch(() => {
-            console.log('통신 실패')    
+            console.log('submit 실패')    
         })
     };
 
     const goPage = (type, method) => {
+      console.log(type, method)
       if (type === 'review') {
         changeMode(method);
       } else {
@@ -46,15 +46,22 @@ export default function Write(props) {
         className="create-form"
           onSubmit={(event) => {
             event.preventDefault();
-            const img = event.target[0].files[0];
             const formData = new FormData();
             // formData.append('reviewId', event.target.id.value);
+
+            let img = ''
+            if (originWriting !== null){
+              img = event.target.photo.value
+            } else {
+              img = event.target[0].files[0];
+            }
             formData.append('reviewPhoto', img);
             formData.append('reviewTitle', event.target.name.value);
             formData.append('reviewPrice', event.target.price.value);
             formData.append('reviewStar', event.target.star.value);
             formData.append('reviewContent', event.target.review.value);
             submitWriting(formData);
+            changeMode('get');
           }}
       >
         <div>
@@ -62,7 +69,7 @@ export default function Write(props) {
             <div className="gift-photo">
               {
                 originWriting
-                  ? (<img src={originWriting.photo}></img>)
+                  ? (<img name="photo" src={originWriting.photo}></img>)
                   : (<input type="file" accept="image/*" name="file" required multiple/>)
               }
             </div>
@@ -98,7 +105,7 @@ export default function Write(props) {
         </div>
 
         <input type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>
-        <button onClick={event => goPage(type, 'get')}>취소</button>
+        <div onClick={event => goPage(type, 'get')}>취소</div>
       </form>
     </>
   );
