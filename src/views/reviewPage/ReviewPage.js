@@ -5,7 +5,6 @@ import Write from "./Write";
 
 export default function ReviewPage(props) {
     console.log("mode is",props.mode);
-    // console.log("limit is",props.limit_num)
     const reviews = {
         "reviewList" : [{
           idx: "0",
@@ -63,7 +62,7 @@ export default function ReviewPage(props) {
         console.log('update')
         console.log(reviewId)
         return (
-            <Write url={API_URL} type={"reivew"} review={reviewList[reviewId]} modeEvent={setMode}/>
+            <Write url={API_URL} type={"reivew"} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
         )
     } else if (mode === 'delete') {
         console.log('delete')

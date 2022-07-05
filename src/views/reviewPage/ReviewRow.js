@@ -3,19 +3,10 @@ import { Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios';
 import ReviewPage from "./ReviewPage";
 
-
 export default function ReviewRow(props) {
   const [review, setReview] = useState({});
   const [url, setUrl] = useState('');
   const [limit, setLimit] = useState(0);
-
-  // const changeMode = useCallback(type => {
-  //   props.modeEvent(type);
-  // }, [props.modeEvent])
-
-  // const changeWritingId = useCallback(id => {
-  //   props.IdEvent(id);
-  // }, [props.IdEvent])
 
   useEffect(() => {
     setReview(props.review);
@@ -39,11 +30,12 @@ export default function ReviewRow(props) {
   const deleteReview = (reviewId) => {
     axios.put(url)    
     .then((response) => {    
+      props.IdEvent(reviewId);
       props.modeEvent('get');
     })
     .catch(() => {
       console.log('i want delete',review);
-      props.IdEvents(reviewId);
+      props.IdEvent(reviewId);
       props.modeEvent('get');
     })
   }
