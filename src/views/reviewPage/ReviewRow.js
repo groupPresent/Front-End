@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react"; 
 import { Route, Routes, Link } from 'react-router-dom';
-import axios from 'axios' 
-import ReviewPage from "./ReviewPage"
+import axios from 'axios';
+import ReviewPage from "./ReviewPage";
 
 
 export default function ReviewRow(props) {
@@ -9,35 +9,42 @@ export default function ReviewRow(props) {
   const [url, setUrl] = useState('');
   const [limit, setLimit] = useState(0);
 
-  const changeMode = useCallback(type => {
-    props.modeEvent(type)
-  }, [props.modeEvent])
+  // const changeMode = useCallback(type => {
+  //   props.modeEvent(type);
+  // }, [props.modeEvent])
+
+  // const changeWritingId = useCallback(id => {
+  //   props.IdEvent(id);
+  // }, [props.IdEvent])
 
   useEffect(() => {
     setReview(props.review);
     setUrl(props.url);
   }, [limit])
 
-  const updateReview = (review) => {
+  const updateReview = (reviewId) => {
     axios.put(url, review)    
     .then((response) => {    
         console.log(response)  
-        changeMode('update');
+        props.IdEvent(reviewId);
+        props.modeEvent('update');
     })
     .catch(() => {
         console.log('i want update',review);
-        changeMode('update');
+        props.IdEvent(reviewId);
+        props.modeEvent('update');
     })
   }
 
-  const deleteReview = (review) => {
+  const deleteReview = (reviewId) => {
     axios.put(url)    
     .then((response) => {    
-      changeMode('get');
+      props.modeEvent('get');
     })
     .catch(() => {
-      console.log('i want delete',review)
-      changeMode('get');
+      console.log('i want delete',review);
+      props.IdEvents(reviewId);
+      props.modeEvent('get');
     })
   }
   
