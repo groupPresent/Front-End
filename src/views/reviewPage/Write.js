@@ -17,10 +17,6 @@ export default function Write(props) {
       setType(props.type);
     }, [limit])
 
-    const changeMode = useCallback(type => {
-      props.reviewModeEvent(type)
-    }, [props.reviewModeEvent])
-
     const submitWriting = (data) => {
       axios.post(url, data)    
         .then((data) => {    
@@ -34,7 +30,7 @@ export default function Write(props) {
     const goPage = (type, method) => {
       console.log(type, method)
       if (type === 'review') {
-        changeMode(method);
+        props.reviewModeEvent(method);
       } else {
 
       }
@@ -61,7 +57,7 @@ export default function Write(props) {
             formData.append('reviewStar', event.target.star.value);
             formData.append('reviewContent', event.target.review.value);
             submitWriting(formData);
-            changeMode('get');
+            props.reviewModeEvent('get');
           }}
       >
         <div>
