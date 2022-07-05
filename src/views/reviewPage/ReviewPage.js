@@ -56,13 +56,13 @@ export default function ReviewPage(props) {
         )
     } else if (mode === 'post') {
         return (
-            <Write url={REVIEW_API_URL} type={"reivew"}/>// modeEvent={setMode}
+            <Write url={REVIEW_API_URL} type={"reivew"} writingMode={mode}/>// modeEvent={setMode}
         )
     } else if (mode === 'update') {
         console.log('update')
         console.log(reviewId)
         return (
-            <Write url={REVIEW_API_URL} type={"review"} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
+            <Write url={REVIEW_API_URL} writingType={"review"} writingMode={mode} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
         )
     } else if (mode === 'delete') {
         console.log('delete')

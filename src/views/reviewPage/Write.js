@@ -7,14 +7,16 @@ import ReviewPage from "./ReviewPage";
 export default function Write(props) {
     const [originWriting, setoriginWriting] = useState(null);
     const [url, setUrl] = useState('');
-    const [type, setType] = useState('');
+    const [writingType, setWritingType] = useState('');
+    const [writingMode, setwritingMode] = useState('');
     const [limit, setLimit] = useState(0);
     const navigate = useNavigate();
     
     useEffect(() => {
-      setoriginWriting(props.review);
+      if(props.review) { setoriginWriting(props.review); }
       setUrl(props.url);
-      setType(props.type);
+      setWritingType(props.writingType);
+      setwritingMode(props.writingMode);
     }, [limit])
 
     const submitWriting = (data) => {
@@ -27,9 +29,9 @@ export default function Write(props) {
         })
     };
 
-    const goPage = (type, method) => {
-      console.log(type, method)
-      if (type === 'review') {
+    const goPage = (writingType, method) => {
+      // console.log(writingType, method)
+      if (writingType === 'review') {
         props.reviewModeEvent(method);
       } else {
 
@@ -101,7 +103,7 @@ export default function Write(props) {
         </div>
 
         <input type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>
-        <div onClick={event => goPage(type, 'get')}>취소</div>
+        <div onClick={event => goPage(writingType, 'get')}>취소</div>
       </form>
     </>
   );
