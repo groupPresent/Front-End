@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"; 
 import axios from 'axios'; 
 import ReviewList from "./ReviewList";
-import Write from "./Write";
+import Write from "../Write/Write";
 
 export default function ReviewPage(props) {
     console.log("mode is",props.mode);

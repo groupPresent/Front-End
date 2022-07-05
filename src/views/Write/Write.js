@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import ReviewPage from "./ReviewPage";
 
 export default function Write(props) {
     const [originWriting, setoriginWriting] = useState(null);
