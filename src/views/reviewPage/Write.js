@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import ReviewPage from "./ReviewPage";
 
 export default function Write(props) {
     const [originWriting, setoriginWriting] = useState(null);
@@ -17,6 +18,10 @@ export default function Write(props) {
       // if (type )
     }, [limit])
 
+    const changeMode = useCallback(type => {
+      props.reviewModeEvent(type)
+    }, [props.reviewModeEvent])
+
     const submitWriting = (data) => {
       axios.post(url, data)    
         .then((data) => {    
@@ -26,6 +31,14 @@ export default function Write(props) {
             console.log('통신 실패')    
         })
     };
+
+    const goPage = (type, method) => {
+      if (type === 'review') {
+        changeMode(method);
+      } else {
+
+      }
+    }
   return (
     <>
       <h1>Create {props.url}</h1>
@@ -47,7 +60,11 @@ export default function Write(props) {
         <div>
           <div className="gift-info-wrap">
             <div className="gift-photo">
-              <input type="file" accept="image/*" name="file" required multiple/>
+              {
+                originWriting
+                  ? (<img src={originWriting.photo}></img>)
+                  : (<input type="file" accept="image/*" name="file" required multiple/>)
+              }
             </div>
             <div className="gift-info">
               <div className="gift-name">
@@ -81,9 +98,7 @@ export default function Write(props) {
         </div>
 
         <input type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>
-        <Link to={url} key={props}>
-            <button>취소</button>
-        </Link>
+        <button onClick={event => goPage(type, 'get')}>취소</button>
       </form>
     </>
   );
