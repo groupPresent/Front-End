@@ -20,17 +20,26 @@ export default function Write(props) {
     }, [limit])
 
     const submitWriting = (data) => {
-      axios.post(url, data)    
+      if (writingMode === 'post') {
+        axios.post(url, data)    
         .then((data) => {    
             console.log(data)  
         })
         .catch(() => {
             console.log('submit 실패')    
         })
+      } else {
+        axios.put(url, data)    
+        .then((response) => {    
+            console.log(response);
+        })
+        .catch(() => {
+            console.log('i want update', originWriting);
+        })
+      }
     };
 
     const goPage = (writingType, method) => {
-      // console.log(writingType, method)
       if (writingType === 'review') {
         props.reviewModeEvent(method);
       } else {

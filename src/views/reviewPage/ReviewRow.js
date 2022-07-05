@@ -14,17 +14,8 @@ export default function ReviewRow(props) {
   }, [limit])
 
   const updateReview = (reviewId) => {
-    axios.put(url, review)    
-    .then((response) => {    
-        console.log(response)  
-        props.IdEvent(reviewId);
-        props.modeEvent('update');
-    })
-    .catch(() => {
-        console.log('i want update',review);
-        props.IdEvent(reviewId);
-        props.modeEvent('update');
-    })
+    props.IdEvent(reviewId);
+    props.modeEvent('update');
   }
 
   const deleteReview = (reviewId) => {
