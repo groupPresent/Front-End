@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useCallback } from "react";
 
 import { Route, Routes } from "react-router-dom";
+import UserReceivedFunding from "./User/UserReceivedFunding";
 
 
 function Article(props){
@@ -127,20 +128,9 @@ function Article(props){
         <li><a href = "receivedfunding">받은 펀딩</a></li>
         <li><a href = "sentfunding">보낸 펀딩</a></li>
         </ul>
-        <div className="receivedFunding"> 
-          <img src = "" alt = "선물 사진"/>
-          <h4>선물 이름</h4>
-          <h4>가격</h4>
-          <button>댓글 보기</button>
-          <button>후기 작성</button>
-        </div>
-        <div className="receivedFunding">
-          <img src = "" alt = "선물 사진"/>
-          <h4>선물 이름</h4>
-          <h4>가격</h4>
-          <button>댓글 보기</button>
-          <button>후기 작성</button>
-        </div>
+       <UserReceivedFunding></UserReceivedFunding>
+      <div>
+       </div>
         <button>+</button>
       </>
       

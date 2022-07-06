@@ -127,19 +127,7 @@ function Article(props){
         <li><a href = "receivedfunding">받은 펀딩</a></li>
         <li><a href = "sentfunding">보낸 펀딩</a></li>
         </ul>
-        <div className="receivedFunding"> 
-          <img src = "" alt = "선물 사진"/>
-          <h4>선물 이름</h4>
-          <h4>가격</h4>
-        
-        </div>
-        <div className="receivedFunding">
-          <img src = "" alt = "선물 사진"/>
-          <h4>선물 이름</h4>
-          <h4>가격</h4>
-          
-        </div>
-  
+       
       </>
       
         
