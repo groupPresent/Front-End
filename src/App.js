@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState, useCallback } from 'react'
 
+
 import { Route, Routes } from 'react-router-dom'
 import Main from './views/mainPage/Main'
 import MyPage from './views/myPage/MyPage'
@@ -17,11 +18,13 @@ import Tab1 from "./views/friendPage/Tab1";
 import Tab2 from "./views/friendPage/Tab2";
 import Write from "./views/Write/Write";
 
+
 const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Main />} />
+
         <Route path="myPage" element={<MyPage />} />
         <Route path="customerService" element={<CustomerService />} />
         <Route path="receivedfunding" element={<ReceivedFunding />} />
@@ -32,6 +35,7 @@ const App = () => {
         <Route path="/friendtab" element={<FriendTab />} />
         <Route path="/Tab1" element={<Tab1 />} />
         <Route path="/Tab2" element={<Tab2 />} />
+
       </Routes>
     </>
   );

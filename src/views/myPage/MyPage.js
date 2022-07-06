@@ -3,6 +3,12 @@ import { useState, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 import '../common/modal.css'
 import Modal from '../common//Modal';
+import axios from 'axios';
+import UserName from "./User/UserName";
+import UserAccount from "./User/UserAccount";
+import UserBirth from "./User/UserBirth";
+import UserPhoto from "./User/UserPhoto";
+import UserReceivedFunding from "./User/UserReceivedFunding";
 
 function Article(props){
     return <article>
@@ -207,10 +213,12 @@ const [modalOpen, setModalOpen] = useState(false);
         <li><a href = "receivedfunding">받은 펀딩</a></li>
         <li><a href = "sentfunding">보낸 펀딩</a></li>
         </ul>
-        <h2>내 사진</h2>
-        <h2>이름</h2>
-        <h2>생년월일</h2>
-        <h2>계좌번호</h2>
+
+        <img src = "{<UserPhoto></UserPhoto>}"></img>
+        <h2><UserName></UserName></h2>
+        <h2><UserBirth></UserBirth></h2>
+        <h2><UserAccount></UserAccount></h2>
+       
         
           <button href="/create" onClick={event=>{
             event.preventDefault();
