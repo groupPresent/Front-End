@@ -32,12 +32,18 @@ const EventDay = () => {
     ])
   return (
     <>
-        <p>기념일이 임박한 친구</p>
-        <div>
+    <div class = 'eventday'>
+        <div class = "imminient">
+        </div>
+    </div>
+    <div class = "divimminientList">
+        <div class = "imminientList">
             {events.map(event=>(
               <EventLists event={event} key={event.id}/>
             ))}
         </div>
+     </div>
+      
     </>
   )
 }

@@ -1,0 +1,96 @@
+html {
+    background: url("../mainImages/1.BG.png" );
+    background-size: cover;   
+    text-align: center;
+}
+button {
+    border: none;
+    
+   
+}
+.magnifier {
+    background: url("../mainImages/1.search_button.png" );
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+.imminient {
+    background: url("../mainImages/1.d-days.png" );
+    width: 370px;
+    text-align: center;
+    background-size: 370px;
+    background-repeat: no-repeat;
+}
+.eventday 
+{
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    
+
+}
+.imminientList {
+    background-color: #ece8e4;
+    width: 370px;
+}
+
+
+.divimminientList {
+    display: flex;
+    justify-content: center;
+    margin-top: -2px;
+    border-radius: 10px;
+    
+}
+
+.divWishlist {
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+.wishlist {
+    background: url("../mainImages/1.my_wishlist.png" );
+    background-size: 370px;
+    background-repeat: no-repeat;
+    width: 370px;
+    height: 100px;
+    
+}
+
+.divWishlistContents {
+    display: flex;
+    justify-content: center;
+}
+
+.wishlistContents {
+    width: 370px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: -50px;
+}
+
+.both {
+    display: flex;
+    flex-wrap: wrap;
+    width: 380px;
+    justify-content: center;
+}
+.friendsInput {
+    background-color: #763830;
+    width: 370px;
+    height: 40px;
+}
+.divFriendsInput {
+    display: flex;
+    justify-content: center;
+    
+}
+input::placeholder{
+    color:white;
+}
+input {
+    border-radius: 10px;
+    
+}

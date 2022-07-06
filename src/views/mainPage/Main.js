@@ -4,6 +4,10 @@ import Navbar from '../common/NavBar'
 import Search from './components/Search'
 import EventDay from './components/EventDay'
 import Recommand from './components/Recommand'
+
+import './components/main.css';
+
+
 import Menu from './components/Menu'
 
 const Main = () => {
@@ -20,6 +24,7 @@ const Main = () => {
 
     <button onClick={onClick}>(메뉴)</button>
     {menuClicked&& <Menu/>}
+
     <hr/>
     <Search/>
     <EventDay/>
@@ -29,8 +34,10 @@ const Main = () => {
     <br/>
 
 
+
     
     </>
+
   )
 }
 
