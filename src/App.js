@@ -16,7 +16,7 @@ import Friends from "./views/friendPage/Friends";
 import FriendTab from "./views/friendPage/FriendTab";
 import Tab1 from "./views/friendPage/Tab1";
 import Tab2 from "./views/friendPage/Tab2";
-import Write from "./views/Write/Write";
+import WriteFundingPage from "./views/myPage/WriteFunding";
 
 
 const App = () => {
@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/friendtab" element={<FriendTab />} />
         <Route path="/Tab1" element={<Tab1 />} />
         <Route path="/Tab2" element={<Tab2 />} />
-
+        <Route path="/user/funding" element={<WriteFundingPage mode='post' />} />
       </Routes>
     </>
   );
