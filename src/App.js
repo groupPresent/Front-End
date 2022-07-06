@@ -11,9 +11,8 @@ import Detail from './views/detailPage/Detail'
 import ReviewPage from "./views/reviewPage/ReviewPage";
 import ReviewList from "./views/reviewPage/ReviewList";
 import ReviewCreate from "./views/reviewPage/Write";
-
-import Friends from "./views/friendPage/Friends";
-import FriendTab from "./views/friendPage/FriendTab";
+import Login from './views/loginPage/Login'
+import SignUp from './views/signUp/SignUp'
 
 
 const App = () => {
@@ -21,15 +20,14 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="login" element={<Login />} />
         <Route path="myPage" element={<MyPage />} />
         <Route path="customerService" element={<CustomerService />} />
         <Route path="receivedfunding" element={<ReceivedFunding />} />
         <Route path="sentfunding" element={<SentFunding />} />
         <Route path="detail" element={<Detail/>} />
         <Route path="/user/funding/review" element={<ReviewPage mode='get' limit_num='false'/>} />
-        <Route path="/friends" element={<Friends />} />
-        <Route path="/friendtab" element={<FriendTab />} />
-
+        <Route path="/signUp" element={<SignUp />} />
       </Routes>
     </>
   )
