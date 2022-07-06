@@ -17,6 +17,7 @@ import FriendTab from "./views/friendPage/FriendTab";
 import Tab1 from "./views/friendPage/Tab1";
 import Tab2 from "./views/friendPage/Tab2";
 import Login from './views/loginPage/Login'
+import SignUp from './views/signUp/SignUp'
 
 
 
@@ -26,6 +27,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="myPage" element={<MyPage />} />
         <Route path="customerService" element={<CustomerService />} />
         <Route path="receivedfunding" element={<ReceivedFunding />} />
