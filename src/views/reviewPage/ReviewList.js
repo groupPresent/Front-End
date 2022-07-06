@@ -1,38 +1,24 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ReviewRow from "./ReviewRow";
+import axios from 'axios';
 
 export default function ReviewList(props) {
-  // const [reviews, setReview] = useState();
-  const reviews = [
-    {
-      idx: "1",
-      name: "¾ÆÀÌÆù",
-      photo: "/",
-      star: "5Á¡",
-      review: "¾ÆÀÌÆù ÁÁ¾Ó"
-    },
-    { idx: "2", name: "¸ÆºÏ", photo: "/", star: "4Á¡", review: "m2Ä¨ ³ª¿Ô´ë" }
-  ]; //API¿¡¼­ ¹Þ¾Æ¿À´Â µí
-
   return (
     <>
       <h1>Leview list</h1>
       <ul className="reviewListView">
-        {!reviews.length && <h4>¼±¹° ÈÄ±â°¡ ¾ø½À´Ï´Ù.</h4>}
-        {reviews?.map((review) => {
+        {!props.reviewList.length && <h4>ì„ ë¬¼ í›„ê¸°ê°€ ì—†ìŠµë‹ˆë‹¤.</h4>}
+        {props.reviewList?.map((review) => {
           return (
             <ReviewRow
-              index={review.idx}
-              giftName={review.name}
-              giftPhoto={review.photo}
-              star={review.star}
-              review={review.review}
-              // row={v}
+              key={review.idx}
+              review={review}
+              modeEvent={props.modeEvent}
             />
           );
         })}
       </ul>
-      <span>+</span>
     </>
   );
 }

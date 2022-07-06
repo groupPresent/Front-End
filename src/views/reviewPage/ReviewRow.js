@@ -1,26 +1,61 @@
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useCallback } from "react"; 
+import { Route, Routes, Link } from 'react-router-dom';
+import axios from 'axios' 
+import ReviewPage from "./ReviewPage"
 
-export default function ReviewRow({ idx, giftName, giftPhoto, star, review }) {
-  // const giftName = giftName;
-  // const pubDate = props.row.pubDate;
-  // const desc = props.row.description;
+export default function ReviewRow(props) {
+  const [review, setReview] = useState({});
+  const [limit, setLimit] = useState(0);
 
+  const changeMode = useCallback(type => {
+    props.modeEvent(type)
+  }, [props.modeEvent])
+
+  useEffect(() => {
+    setReview(props.review)
+  }, [limit])
+
+  const updateReview = (review) => {
+    axios.put('/user/funding/review', review)    
+    .then((response) => {    
+        console.log(response)  
+        changeMode('update');
+    })
+    .catch(() => {
+        console.log('i want update',review);
+        changeMode('update');
+    })
+  }
+
+  const deleteReview = (review) => {
+    axios.put('/user/funding/review')    
+    .then((response) => {    
+      changeMode('get');
+    })
+    .catch(() => {
+      console.log('i want delete',review)
+      changeMode('get');
+    })
+  }
+  
   return (
-    <Link to={`/yeram/detail/${idx}`}>
-      <li className="review-row">
+    <li className="review-row">
+      <div>
         <div>
-          <div>...</div>
-          <div>
-            <img className="gift-img" src={giftPhoto} />
-          </div>
-          <div className="gift-info">
-            <div className="name">º±π∞ ¿Ã∏ß: {giftName}</div>
-            <div className="price">º±π∞ ∞°∞›: {}</div>
-            <div className="star">º±π∞ ∫∞¡°: {star}</div>
-            <div className="review">∏Æ∫‰ ≥ªøÎ: {review}</div>
-          </div>
+          <button onClick={event => updateReview(review.idx)}>ÏàòÏ†ï</button>
+          {/* <button onClick={event => ReviewPage}>ÏàòÏ†ï</button> */}
+          <button onClick={event => deleteReview(review.idx)}>ÏÇ≠Ï†ú</button>
         </div>
-      </li>
-    </Link>
+        <div>
+          <img className="gift-img" src={review.photo} />
+        </div>
+        <div className="gift-info">
+          <div className="name">ÏÑ†Î¨º Ïù¥Î¶Ñ: {review.name}</div>
+          <div className="price">ÏÑ†Î¨º Í∞ÄÍ≤©: {review.price}</div>
+          <div className="star">ÏÑ†Î¨º Î≥ÑÏ†ê: {review.star}</div>
+          <div className="review">Î¶¨Î∑∞ ÎÇ¥Ïö©: {review.review}</div>
+        </div>
+      </div>
+    </li>
   );
 }
