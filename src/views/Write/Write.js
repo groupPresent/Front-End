@@ -89,28 +89,44 @@ export default function Write(props) {
                   defaultValue={originWriting? originWriting.name : ''}
                 />
               </div>
-              <div className="gift-star">
-                <div>별점</div>
-                <input type="text" name="star" placeholder="별점을 적어주세요." defaultValue={originWriting? originWriting.star : ''}/>
-              </div>
+              {
+                writingType === 'review'
+                ? (
+                  <div className="gift-star">
+                    <div>별점</div>
+                    <input type="text" name="star" placeholder="별점을 적어주세요." defaultValue={originWriting? originWriting.star : ''}/>
+                  </div>
+                )
+                : ""
+              }
               <div className="gift-price">
                 <div>가격</div>
                 <input type="number" name="price" placeholder="가격을 적어주세요." defaultValue={originWriting? originWriting.price : ''}/>
               </div>
             </div>
           </div>
+          {
+            writingType === 'review'
+            ? (
+              <div className="gift-review">
+                <input
+                  type="textarea"
+                  name="review"
+                  placeholder="후기를 남겨주세요."
+                  defaultValue={originWriting? originWriting.review : ''}
+                />
+              </div>              
+            )
+            : ""
+          }
 
-          <div className="gift-review">
-            <input
-              type="textarea"
-              name="review"
-              placeholder="후기를 남겨주세요."
-              defaultValue={originWriting? originWriting.review : ''}
-            />
-          </div>
         </div>
-
-        <input type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>
+        
+        {
+          writingType === "review"
+          ? (<input type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>)
+          : (<input type="submit" value={originWriting? '펀딩 수정' : '펀딩 등록'}></input>)
+        }
         <div onClick={event => goPage(writingType, 'get')}>취소</div>
       </form>
     </>
