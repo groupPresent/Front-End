@@ -19,7 +19,6 @@ import Tab2 from "./views/friendPage/Tab2";
 import Login from './views/loginPage/Login'
 import SignUp from './views/signUp/SignUp'
 
-
 const App = () => {
   return (
     <>

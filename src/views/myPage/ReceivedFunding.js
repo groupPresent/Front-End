@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import { Route, Routes } from "react-router-dom";
 import UserReceivedFunding from "./User/UserReceivedFunding";
 import "./receivedFunding.css"
+//백그라운드 이미지 경로
+import bg from "../../../src/img/background/withLeaf.png";
 import Navbar from "../common/NavBar";
 
 function Article(props){
@@ -132,6 +134,11 @@ function Article(props){
 
 
   const ReceivedFunding = () => {
+    //백그라운드 이미지 설정
+    useEffect(() => {
+      document.body.style.background = `url(${bg}) repeat-y center top / cover`;
+    }, []);
+    
   /* map 으로 돌려야 하나..? 데이터를 받아와서 div 를 여러 개 만들어야 하는데.. 일단 노마드코더 영화 앱 참고하기*/
     return (
       <div class = "receivedFunding">

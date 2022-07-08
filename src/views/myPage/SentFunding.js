@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import { Route, Routes } from "react-router-dom";
 import UserSentFunding from "./User/UserSentFunding";
 import "./sentFunding.css"
+//백그라운드 이미지 경로
+import bg from "../../../src/img/background/withLeaf.png";
 import Navbar from "../common/NavBar";
 
 function Article(props){
@@ -133,6 +135,11 @@ function Article(props){
 
   const SentFunding = () => {
   
+    //백그라운드 이미지 설정
+    useEffect(() => {
+      document.body.style.background = `url(${bg}) repeat-y center top / cover`;
+    }, []);
+    
     return (
       <div class = "sentFunding">
         <Navbar></Navbar>

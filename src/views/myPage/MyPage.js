@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import '../common/modal.css'
 import Modal from '../common//Modal';
@@ -11,14 +11,14 @@ import UserPhoto from "./User/UserPhoto";
 import UserReceivedFunding from "./User/UserReceivedFunding";
 import Navbar from "../common/NavBar";
 import "./myPage.css";
+//백그라운드 이미지 경로
+import bg from "../../../src/img/background/withLeaf.png";
 
 function Article(props) {
   return <article>
 
   </article>
 }
-
-
 
 function Header(props) {
   return <header>
@@ -101,6 +101,12 @@ function Update(props) {
 
 const MyPage = () => {
 
+  //백그라운드 이미지 설정
+  useEffect(() => {
+    document.body.style.background = `url(${bg}) repeat-y center top / cover`;
+  }, []);
+  
+  document.body.style.backgroundImage = "/src/img/background/withLeaf.png";
 
   let nav = null;
   const [anniversaries, setAnniversaries] = useState([
@@ -215,7 +221,6 @@ const MyPage = () => {
     window.location.href = "/sentfunding"
   }
 
-
   return (
     <div class="mypage">
 
@@ -274,9 +279,6 @@ const MyPage = () => {
         <button class="delete" onClick={openModal}>탈퇴하기</button>
       </div>
     </div>
-
-
-
   );
 }
 
