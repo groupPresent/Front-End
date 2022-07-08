@@ -2,6 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+//백그라운드 이미지 경로
+import bg from "../../../src/img/background/withRibon2.png";
 import "../../css/components/box.css"
 import "../../css/components/button.css"
 import "../../views/reviewPage/Write.css"
@@ -19,6 +21,7 @@ export default function Write(props) {
       setUrl(props.url);
       setWritingType(props.writingType);
       setwritingMode(props.writingMode);
+      document.body.style.background = `url(${bg}) repeat-y center top / cover`;
     }, [limit])
 
     const submitWriting = (data) => {
