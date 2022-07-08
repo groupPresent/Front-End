@@ -19,6 +19,7 @@ import Tab2 from "./views/friendPage/Tab2";
 import Login from './views/loginPage/Login'
 import SignUp from './views/signUp/SignUp'
 
+
 const App = () => {
   return (
     <>
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="sentfunding" element={<SentFunding />} />
         <Route path="detail" element={<Detail/>} />
         <Route path="/user/funding/review" element={<ReviewPage mode='get' limit_num='false'/>} />
+
         <Route path="/friend" element={<Friends />} />
         <Route path="/friendtab" element={<FriendTab />} />
         <Route path="/Tab1" element={<Tab1 />} />

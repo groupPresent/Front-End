@@ -43,9 +43,9 @@ const Login = () => {
       <button onClick={login}>로그인</button>
       <Link to='/signUp'>회원가입</Link>
 
-
-    </div>
+  </div>
   )
 }
+
 
 export default Login
