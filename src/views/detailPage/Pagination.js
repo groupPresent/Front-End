@@ -3,7 +3,7 @@ import React from 'react'
 const Pagination = ({ total, limit, currentPage, setCurrentPage }) => {
 
   const numPages = Math.ceil(total / limit)
-  //¸ñ·ÏÀÇ °¹¼ö¿¡ µû¸¥ ÀüÃ¼ ÆäÀÌÁö ¼ö
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
   return (
     <div>
@@ -13,6 +13,7 @@ const Pagination = ({ total, limit, currentPage, setCurrentPage }) => {
         </button>
         {new Array(numPages).fill().map((_, i) => (
           <button
+            className={ i+1 == currentPage ? "cur" : "" }
             key={i + 1}
             onClick={() => setCurrentPage(i + 1)}
             // aria-current={currentPage === i + 1 ? 'currentPage' : null}

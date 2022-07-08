@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react"; 
 import axios from 'axios'; 
 import ReviewList from "./ReviewList";
-import ReviewWrite from "./Write";
+import Write from "../Write/Write";
 
 export default function ReviewPage(props) {
-    console.log("mode is",props.mode)
-    console.log("limit is",props.limit_num)
-    if (props.limit_num !== 'false') {
-        console.log('limit yes')
-        setLimit = limit += 1;
-    }
+    console.log("mode is",props.mode);
     const reviews = {
         "reviewList" : [{
-          idx: "1",
+          idx: "0",
           name: "아이폰",
           photo: "/",
           star: "5점",
@@ -20,7 +15,7 @@ export default function ReviewPage(props) {
           review: "아이폰 좋앙"
         },
         { 
-          idx: "2", 
+          idx: "1", 
           name: "맥북", 
           photo: "/", 
           star: "4점",
@@ -29,14 +24,20 @@ export default function ReviewPage(props) {
         }]
       }; 
 
-    const API_URL = '/user/funding/review'
+    const REVIEW_API_URL = '/user/funding/review'
     const [mode, setMode] = useState(props.mode); // get, post, update, delete
     const [reviewList, setReviewList] = useState([]);
+    const [reviewId, setReviewId] = useState(0);
     const [limit, setLimit] = useState(0);
+
+    if (props.limit_num !== 'false') {
+        console.log('limit yes')
+        setLimit = limit += 1;
+    }
 
     // //컴포넌트가 불려왔을 때 한 번만 axios 통해 가져온 data를 출력
     useEffect(() => {
-        axios.get(API_URL)    
+        axios.get(REVIEW_API_URL)    
         .then((reviews) => {   
             setReviewList(reviews.reviewList);  
             setMode('get');
@@ -45,24 +46,23 @@ export default function ReviewPage(props) {
             console.log(props.mode, '실패');    
             setReviewList(reviews.reviewList); 
             setMode(props.mode);
-
-            // setMode('post');
         })
     }, [limit])
 
 
     if (mode === 'get') {
         return (
-            <ReviewList reviewList={reviewList} modeEvent={setMode}/>// modeEvent={setMode}
+            <ReviewList url={REVIEW_API_URL} reviewList={reviewList} modeEvent={setMode} IdEvent={setReviewId}/>// modeEvent={setMode}
         )
     } else if (mode === 'post') {
         return (
-            <ReviewWrite/>// modeEvent={setMode}
+            <Write url={REVIEW_API_URL} type={"reivew"} writingMode={mode}/>// modeEvent={setMode}
         )
     } else if (mode === 'update') {
         console.log('update')
+        console.log(reviewId)
         return (
-            <ReviewWrite review={reviewList[0]} modeEvent={setMode}/>
+            <Write url={REVIEW_API_URL} writingType={"review"} writingMode={mode} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
         )
     } else if (mode === 'delete') {
         console.log('delete')

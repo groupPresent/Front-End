@@ -11,13 +11,14 @@ import SentFunding from './views/myPage/SentFunding'
 import Detail from './views/detailPage/Detail'
 import ReviewPage from "./views/reviewPage/ReviewPage";
 import ReviewList from "./views/reviewPage/ReviewList";
-import ReviewCreate from "./views/reviewPage/Write";
+import ReviewCreate from "./views/Write/Write";
 import Friends from "./views/friendPage/Friends";
 import FriendTab from "./views/friendPage/FriendTab";
 import Tab1 from "./views/friendPage/Tab1";
 import Tab2 from "./views/friendPage/Tab2";
 import Login from './views/loginPage/Login'
-import SignUp from './views/signUp/SignUp'
+import SignUp from './views/signUp/SignUp';
+import WriteFundingPage from "./views/myPage/WriteFunding";
 
 const App = () => {
   return (
@@ -37,7 +38,7 @@ const App = () => {
         <Route path="/friendtab" element={<FriendTab />} />
         <Route path="/Tab1" element={<Tab1 />} />
         <Route path="/Tab2" element={<Tab2 />} />
-
+        <Route path="/user/funding" element={<WriteFundingPage mode='post' />} />
       </Routes>
     </>
   );
