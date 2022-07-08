@@ -2,6 +2,9 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import "../../css/components/box.css"
+import "../../css/components/button.css"
+import "../../views/reviewPage/Write.css"
 
 export default function Write(props) {
     const [originWriting, setoriginWriting] = useState(null);
@@ -47,9 +50,8 @@ export default function Write(props) {
     }
   return (
     <>
-      <h1>Create {props.url}</h1>
       <form
-        className="create-form"
+        className="basic-box"
           onSubmit={(event) => {
             event.preventDefault();
             const formData = new FormData();
@@ -70,7 +72,8 @@ export default function Write(props) {
             props.reviewModeEvent('get');
           }}
       >
-        <div>
+        <span className="book-mark"><div></div><div></div></span>
+        <div className="input-wrap">
           <div className="gift-info-wrap">
             <div className="gift-photo">
               {
@@ -122,12 +125,14 @@ export default function Write(props) {
 
         </div>
         
-        {
-          writingType === "review"
-          ? (<input type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>)
-          : (<input type="submit" value={originWriting? '펀딩 수정' : '펀딩 등록'}></input>)
-        }
-        <div onClick={event => goPage(writingType, 'get')}>취소</div>
+        <div className="btn-wrap">
+          {
+            writingType === "review"
+            ? (<input className="highlight-btn" type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>)
+            : (<input className="highlight-btn" type="submit" value={originWriting? '펀딩 수정' : '펀딩 등록'}></input>)
+          }
+          <div className="highlight-btn" onClick={event => goPage(writingType, 'get')}><span>취소</span></div>
+        </div>
       </form>
     </>
   );
