@@ -9,7 +9,6 @@ import UserAccount from "./User/UserAccount";
 import UserBirth from "./User/UserBirth";
 import UserPhoto from "./User/UserPhoto";
 import UserReceivedFunding from "./User/UserReceivedFunding";
-import "./myPage.css"
 
 function Article(props){
     return <article>
