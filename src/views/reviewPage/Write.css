@@ -1,0 +1,79 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+input, .gift-photo {
+  border: 0.5px solid #dcdcdc;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+form > div.input-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.gift-info-wrap > .gift-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10rem;
+}
+
+.gift-info-wrap > .gift-photo > input {
+  border: none;
+  border-radius: 0;
+}
+
+.gift-info-wrap > .gift-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.gift-info-wrap > .gift-info > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  width: 45%;
+}
+
+.gift-info-wrap > .gift-info > div.gift-name {
+  width: 100%;
+}
+
+.gift-info-wrap > .gift-info > div > div {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: gray;
+}
+
+.gift-info-wrap > .gift-info > div > input {
+  width: 100%;
+  height: 2rem;
+}
+
+.gift-info-wrap > .gift-info > div > *:first-child {
+  margin-right: 0.5rem;
+}
+
+.gift-review {
+  margin-bottom: 1rem;
+}
+
+.gift-review > input {
+  width: 100%;
+  height: 10rem;
+}
+
+input.highlight-btn {
+  border-radius: 0;
+}

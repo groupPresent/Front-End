@@ -2,6 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import "../../css/components/box.css"
+import "../../css/components/button.css"
+import "../../views/reviewPage/Write.css"
 
 export default function ReviewWrite(props) {
     const [originWriting, setoriginWriting] = useState(null);
@@ -27,9 +30,8 @@ export default function ReviewWrite(props) {
     };
   return (
     <>
-      <h1>Create</h1>
       <form
-        className="create-review-form"
+        className="basic-box"
         onSubmit={(event) => {
           event.preventDefault();
           const img = event.target[0].files[0];
@@ -42,7 +44,8 @@ export default function ReviewWrite(props) {
           submitWriting(formData);
         }}
       >
-        <div>
+        <span className="book-mark"><div></div><div></div></span>
+        <div className="input-wrap">
           <div className="gift-info-wrap">
             <div className="gift-photo">
               <input type="file" accept="image/*" name="file" required multiple/>
@@ -78,10 +81,12 @@ export default function ReviewWrite(props) {
           </div>
         </div>
 
-        <input type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>
-        <Link to={`/user/funding/review`} key={props}>
-            <button>취소</button>
-        </Link>
+        <div className="btn-wrap">
+          <input className="highlight-btn" type="submit" value={originWriting? '후기 수정' : '후기 등록'}></input>
+          <Link to={`/user/funding/review`} key={props}>
+              <button className="highlight-btn">취소</button>
+          </Link>
+        </div>
       </form>
     </>
   );
