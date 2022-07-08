@@ -1,0 +1,32 @@
+.magnifier{
+   background:  url("./NavBarImages/1.search_button.png" );
+   margin-top: 27px;
+  
+}
+nav {
+ display: flex;
+ justify-content: center;
+ 
+}
+.logo {
+    background:  url("./NavBarImages/1.logo.png" );
+    width: 128px;
+    height: 26px;
+    margin: 20px 70px;
+    margin-top: 25px;
+   
+}
+.hamburger{
+    background:  url("./NavBarImages/1.hamburger_button.png" );
+    width: 20px;
+    height: 16px;
+    margin: 20px;
+    margin-top: 30px;
+}
+.addFriends {
+    background:  url("./NavBarImages/1.friend_button.png" );
+    width: 23px;
+    height: 28px;
+    margin-top: 19px;
+    margin-left: 10px;
+}

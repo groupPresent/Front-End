@@ -1,0 +1,128 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+.jejumyeongjo * { 
+ font-family: 'Jeju Myeongjo', serif;
+}
+	
+*{ 
+    font-family: 'Jeju Myeongjo';
+}
+
+.friendsBG {
+    background-image: url("./friendImages/2.BG.png");
+    background-size: cover;   
+    background-color: whitesmoke;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-position: center top;
+    background-repeat: no-repeat;
+    position:fixed;
+    font-size: 16px;
+    
+}
+
+
+.Tab1BG {
+    background-image: url("./friendImages/3-1.BG.png");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    background-color: whitesmoke;
+    background-position: center top;
+    background-repeat: no-repeat;
+    position:fixed;
+    font-size: 16px;
+    font-family : "Segoe Script";
+    
+}
+
+.Tab2BG {
+    background-image: url("./friendImages/3-2.BG.png");
+    background-size: cover;   
+    height: 100vh;
+    width: 100vw;
+    background-color: whitesmoke;
+    background-position: center top;
+    background-repeat: no-repeat;
+    position:fixed;
+    font-size: 16pt;
+    font-family : "Segoe Script";
+    @import url("../common/Fonts/segoesc\ 2.ttf"); 
+}
+
+.showAnniversary {
+    background-image: url("./friendImages/4.myDdays.png");
+    width: 370px;
+    background-size: 370px;
+    background-repeat: no-repeat;
+}
+
+.showAnniversaryBox{
+    position: absolute;
+        top: 170px;
+        left: 580px;
+}
+
+
+.gaugeContainer {
+      margin: 50;
+      background-image: url("./friendImages/3-2.gaugeBox.png");
+      background-repeat: no-repeat;
+}
+.tabs {
+    position: absolute;
+        top: 120px;
+        left: 580px;
+        font-size: 16px;
+}
+
+.tabs2 {
+    position: absolute;
+        top: 100px;
+        left: 600px;
+        font-size: 16px;
+}
+
+.anniversaryList {
+    background-image: url("./friendImages/3-2.boxBG.png");
+    width: 370px;
+    background-size: 370px;
+    background-repeat: no-repeat;
+}
+
+.friendInfo{
+    width: 370px;
+    background-size: 370px;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+
+.myDdays{
+    @import url("../common/Fonts/segoesc\ 2.ttf");
+    font-family : "Segoe Script";
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+    position: relative;
+
+}
+
+
+.friendFunding {
+    background-image: url("./friendImages/3-2.boxBG.png");
+    width: 490px;
+    background-size: 490px;
+    background-repeat: no-repeat;
+    text-align: left;
+    margin-left: 530px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.friendBox{
+    margin-top: 100px;
+}
