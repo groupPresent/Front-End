@@ -15,6 +15,7 @@ export default function ReviewList(props) {
               key={review.idx}
               review={review}
               modeEvent={props.modeEvent}
+              IdEvent={props.IdEvent}
             />
           );
         })}

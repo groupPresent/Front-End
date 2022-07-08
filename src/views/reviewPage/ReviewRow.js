@@ -10,37 +10,30 @@ import "../../css/components/button.css"
 
 export default function ReviewRow(props) {
   const [review, setReview] = useState({});
+  const [url, setUrl] = useState('');
   const [limit, setLimit] = useState(0);
-
-  const changeMode = useCallback(type => {
-    props.modeEvent(type)
-  }, [props.modeEvent])
 
   useEffect(() => {
     setReview(props.review);
+    setUrl(props.url);
     document.body.style.background = `url(${bg}) repeat-y center top / cover`;
   }, [limit])
 
-  const updateReview = (review) => {
-    axios.put('/user/funding/review', review)    
-    .then((response) => {    
-        console.log(response)  
-        changeMode('update');
-    })
-    .catch(() => {
-        console.log('i want update',review);
-        changeMode('update');
-    })
+  const updateReview = (reviewId) => {
+    props.IdEvent(reviewId);
+    props.modeEvent('update');
   }
 
-  const deleteReview = (review) => {
-    axios.put('/user/funding/review')    
+  const deleteReview = (reviewId) => {
+    axios.put(url)    
     .then((response) => {    
-      changeMode('get');
+      props.IdEvent(reviewId);
+      props.modeEvent('get');
     })
     .catch(() => {
-      console.log('i want delete',review)
-      changeMode('get');
+      console.log('i want delete',review);
+      props.IdEvent(reviewId);
+      props.modeEvent('get');
     })
   }
   
