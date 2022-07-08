@@ -1,0 +1,26 @@
+.highlight-btn {
+  padding: 0.3rem;
+  margin: 0 0.5rem;
+
+  background: #B0C2A5;
+  opacity: 0.8;
+  border-left: 3px solid #788F79;
+  border-right: 3px solid #788F79;
+
+  -webkit-transform: skew(340deg);
+  -moz-transform: skew(340deg);
+  -o-transform: skew(340deg);
+  transform: skew(340deg);
+}
+
+.highlight-btn > span {
+  display: block;
+
+  color: #3B2B10;
+  font-weight: 500;
+
+  -webkit-transform: skew(-340deg);
+  -moz-transform: skew(-340deg);
+  -o-transform: skew(-340deg);
+  transform: skew(-340deg);
+}
