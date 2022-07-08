@@ -30,7 +30,7 @@ const Review = ({ commentList }) => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="writing-comment">
         <input
           type="text"
           placeholder="댓글달기"
@@ -41,12 +41,12 @@ const Review = ({ commentList }) => {
       </form>
 
       {/* { commenter: '버민', content: 'ㅋ왜태어났냐' }, */}
-      <div>
+      <div className='comment-list'>
         <ul>
           {commentArray.map((item, index) => (
             <li key={index}>
-              <p>{item.commenter}</p>
-              <p>{item.content}</p>
+              <p className='writer'>{item.commenter}</p>
+              <p className='content'>{item.content}</p>
             </li>
           ))}
         </ul>

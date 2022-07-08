@@ -14,9 +14,8 @@ const FundingList = ({ contributorList }) => {
 
   return (
     <>
-      현재 페이지 : {currentPage}
       <header>
-        <h3>펀딩 리스트</h3>
+        <div>펀딩 리스트</div>
       </header>
       <main>
         {/* 

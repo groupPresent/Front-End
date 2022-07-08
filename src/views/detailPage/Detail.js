@@ -4,6 +4,11 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import FundingList from './FundingList'
 import Review from './Review'
+//백그라운드 이미지 경로
+import bg from "../../../src/img/background/withRibon2.png";
+import "./detail.css"
+import "../../css/components/box.css"
+import "../../css/components/button.css"
 
 const Detail = () => {
   const [fundingPrice, setFundingPrice] = useState()
@@ -11,6 +16,10 @@ const Detail = () => {
   const onChange = (e) => {
     setFundingPrice(e.target.value)
   }
+
+  useEffect(() => {
+    document.body.style.background = `url(${bg}) repeat-y center top / cover`;
+  }, [])
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -63,59 +72,53 @@ const Detail = () => {
     commentNum: 3,
   }
 
-  let text = `펀딩 최소 금액은 ${tmpData.giftFundingPrice}원 입니다`
+  let text = `최소 금액 ${tmpData.giftFundingPrice}원`
   return (
-    <div>
-      <div>
-        <h1>{tmpData.giftName}</h1>
-        <img src={tmpData.giftPhoto} alt="선물"></img>
+    <div className='detailPage'>
+      <div className='gift-funding-info basic-box'>
+        <div className='gift-basic-info'>
+          <img src={tmpData.giftPhoto} alt="선물"></img>
+          <h3>{tmpData.giftName}</h3>
+
+          <div className='give-funding'>
+            <div>
+              <input placeholder={text} value={fundingPrice} onChange={onChange} />
+              <span>원</span>
+            </div>
+            <button
+              className='highlight-btn'
+              onClick={() => {
+                //post메소드
+                setFundingPrice(0)
+              }}
+            >
+              펀딩하기
+            </button>
+          </div>
+        </div>
+        <div className='funding-info'>
+          <div className='funding-percent'>
+            <div> 펀딩률 : {tmpData.giftFundingRate}%</div>
+            <progress
+              style={{
+                width: '100%',
+                height: '30px',
+              }}
+              value={Number(tmpData.giftFundingRate)}
+              max="100"
+            ></progress>
+          </div>
+
+          <hr />
+          <div className='funding-list'>
+            <FundingList contributorList={tmpData.contributorList}></FundingList>
+          </div>
+        </div>
       </div>
 
-      <hr />
-
-      <div>
-        <h2> 펀딩률 : {tmpData.giftFundingRate}%</h2>
-        <progress
-          style={{
-            width: '70%',
-            height: '50px',
-          }}
-          value={Number(tmpData.giftFundingRate)}
-          max="100"
-        ></progress>
-      </div>
-
-      <hr />
-
-      <div>
-        <input placeholder={text} value={fundingPrice} onChange={onChange} />원
-        <br />
-        <br />
-        <button
-          onClick={() => {
-            //post메소드
-            setFundingPrice(0)
-          }}
-        >
-          펀딩하기
-        </button>
-      </div>
-
-      <hr />
-      <div>
-        <FundingList contributorList={tmpData.contributorList}></FundingList>
-      </div>
-      <hr />
-
-      <br />
-      <br />
-      <div>
+      <div className='comment-box basic-box'>
         <Review commentList={tmpData.commentList}></Review>
       </div>
-      <div></div>
-
-      <br />
-      <br />
     </div>
   )
 }
