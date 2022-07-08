@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { useState, useCallback } from "react";
 
 import { Route, Routes } from "react-router-dom";
-
+import UserSentFunding from "./User/UserSentFunding";
+import "./sentFunding.css"
+import Navbar from "../common/NavBar";
 
 function Article(props){
     return <article>
@@ -117,18 +119,36 @@ function Article(props){
     </article>
   }
 
+
+  function myPresenToClick(e) {
+    window.location.href = "/mypage"
+  }
+  function receivedFundingBtnClick(e) {
+    window.location.href = "/receivedfunding"
+  }
+  function sentFundingBtnClick(e) {
+    window.location.href = "/sentfunding"
+  }
+
+
   const SentFunding = () => {
   
     return (
-      <>
+      <div class = "sentFunding">
+        <Navbar></Navbar>
+    
+
+        <div class="divButtons">
+        <div class="buttons">
+          <button class='myPresenTo' onClick={myPresenToClick}>My PresenTo</button>
+          <button class='receivedFundingBtn' onClick={receivedFundingBtnClick}>받은 펀딩</button>
+          <button class='sentFundingBtn' onClick={sentFundingBtnClick}>보낸 펀딩</button>
+        </div>
+      </div>
+
+              <UserSentFunding></UserSentFunding>
        
-       <ul>
-        <li><a href = "mypage">내 정보</a></li>
-        <li><a href = "receivedfunding">받은 펀딩</a></li>
-        <li><a href = "sentfunding">보낸 펀딩</a></li>
-        </ul>
-       
-      </>
+      </div>
       
         
       

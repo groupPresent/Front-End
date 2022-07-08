@@ -19,11 +19,8 @@ const Main = () => {
   }
 
   return (
-    <>
-    <h2>메인 페이지</h2>
-
-    <button onClick={onClick}>(메뉴)</button>
-    {menuClicked&& <Menu/>}
+    <div class = "main">
+   <Navbar></Navbar>
 
     <hr/>
     <Search/>
@@ -36,7 +33,7 @@ const Main = () => {
 
 
     
-    </>
+    </div>
 
   )
 }

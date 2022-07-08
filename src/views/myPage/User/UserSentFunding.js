@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReceivedFundingList from './ReceivedFundingList';
+import SentFundingList from './SentFundingList';
 
-const UserReceivedFunding = () => {
+const UserSentFunding = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -18,10 +18,9 @@ const UserReceivedFunding = () => {
 
     return (
         <>
-
-            <ReceivedFundingList users={users}/>
+            <SentFundingList users={users}/>
         </>
     );
 }
 
-export default UserReceivedFunding;
+export default UserSentFunding;

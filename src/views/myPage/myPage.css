@@ -1,7 +1,250 @@
-.updateButton{
+.mypage {
+    background: url("./myPageImages/4.BG.png" );
+    background-size: cover;   
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-position: center top;
+    background-repeat: no-repeat;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+}
+
+.divButtons {
+    margin-top: 7px; 
+}
+
+.buttons{
+    margin-right: 90px;
+}
+
+.myPresenTo{
+
+    @import url("../common/Fonts/segoesc\ 2.ttf");
+    font-family : "Segoe Script";
+    color: white;
+    background-color: transparent;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 18px;
+
     
 }
 
-.deleteButton {
-   
+.receivedFundingBtn{
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color: white;
+    background-color: transparent;
+    margin-right: 22px;
+    margin-top: 7px;
+    
+}
+
+.sentFundingBtn{
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color: white;
+    background-color: transparent;
+    margin-top: 7px;
+}
+
+.userinfo p{
+    color: #4F2620;
+    margin: 3px;
+    font-weight:500;
+
+}
+.divUserInfo{
+    display: flex;
+    justify-content: center;
+}
+
+.userinfo{
+    text-align: left;
+    margin-left: -20px;
+    margin-top: 40px;
+}
+
+a {
+    color: #4F2620;
+
+}
+
+.aBtn{
+    background-color: transparent;
+    color:  #4F2620;
+    text-decoration: underline;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    font-weight: bold;
+
+}
+
+.abuttons {
+    margin-top: 30px;
+}
+
+.myDdays {
+    background: url("./myPageImages/4.myDdays.png" );
+    background-repeat: no-repeat;
+    width: 420px;
+    background-size: 420px;
+    height: 100px;
+}
+
+.divMyDdays {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+    position: relative;
+}
+
+.dDayTitle {
+    @import url("../common/Fonts/segoesc\ 2.ttf");
+    font-family : "Segoe Script";
+    font-weight: bold;
+    margin: 0px;
+    position:absolute;
+    color: white;
+}
+
+li {
+    list-style: none;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+input::placeholder {
+    color:#4F2620;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+  
+}
+
+.userImage {
+    background: url("./myPageImages/4.myImage2.png" );
+    height: 150px;
+    width: 150px;
+    background-size: 150px;
+    margin-top: -15px;
+}
+
+.divUserImage {
+    display: flex;
+    justify-content: center;
+
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+.contextControl{
+
+}
+
+.divContextControl{
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.delete {
+    position: fixed;
+    bottom: 30px;
+    background-color: transparent;
+    text-decoration: underline;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color:  #4F2620;
+}
+
+
+.divDelete {
+    display: flex;
+    justify-content: center;
+}
+
+.contextControl button {
+    background: url("./myPageImages/4.Highlight.png" );
+    background-size: 50px;
+    width: 50px;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color:  #4F2620;
+}
+
+.contextControl input {
+    background: url("./myPageImages/4.Highlight.png" );
+    background-size: 50px;
+    width: 50px;
+    border: none;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color:  #4F2620;
+}
+
+.createButton {
+    background: url("./myPageImages/4.Highlight.png" );
+    background-size: 70px;
+    width: 70px;
+    border: none;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color:  #4F2620;
+}
+
+.contentNav {
+    margin-top: 20px;
+}
+
+.updateBtn {
+    background: url("./myPageImages/4.Highlight.png" );
+    background-size: 70px;
+    width: 70px;
+    border: none;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color:  #4F2620;
+}
+
+.RFLelement {
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    padding-bottom: 20px;
+
+}
+.divRFLelement {
+    display: flex;
+    justify-content: center;
+}
+.RFL {
+    margin-top: 40px;
+}
+.giftPhoto {
+    background-color: #4F2620;
+    background: url("./myPageImages/KakaoTalk_Photo_2022-07-08-20-22-51.jpeg" );
+    background-size: 100px;
+    width: 100px;
+    height: 100px;
+}
+
+.divGiftPhoto {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
 }

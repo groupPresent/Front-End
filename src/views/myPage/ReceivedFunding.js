@@ -3,7 +3,8 @@ import { useState, useCallback } from "react";
 
 import { Route, Routes } from "react-router-dom";
 import UserReceivedFunding from "./User/UserReceivedFunding";
-
+import "./receivedFunding.css"
+import Navbar from "../common/NavBar";
 
 function Article(props){
     return <article>
@@ -118,21 +119,39 @@ function Article(props){
     </article>
   }
 
+
+  function myPresenToClick(e) {
+    window.location.href = "/mypage"
+  }
+  function receivedFundingBtnClick(e) {
+    window.location.href = "/receivedfunding"
+  }
+  function sentFundingBtnClick(e) {
+    window.location.href = "/sentfunding"
+  }
+
+
   const ReceivedFunding = () => {
   /* map 으로 돌려야 하나..? 데이터를 받아와서 div 를 여러 개 만들어야 하는데.. 일단 노마드코더 영화 앱 참고하기*/
     return (
-      <>
+      <div class = "receivedFunding">
       
-       <ul>
-        <li><a href = "mypage">내 정보</a></li>
-        <li><a href = "receivedfunding">받은 펀딩</a></li>
-        <li><a href = "sentfunding">보낸 펀딩</a></li>
-        </ul>
+
+      <Navbar></Navbar>
+     
+
+      <div class="divButtons">
+        <div class="buttons">
+          <button class='myPresenTo' onClick={myPresenToClick}>My PresenTo</button>
+          <button class='receivedFundingBtn' onClick={receivedFundingBtnClick}>받은 펀딩</button>
+          <button class='sentFundingBtn' onClick={sentFundingBtnClick}>보낸 펀딩</button>
+        </div>
+      </div>
        <UserReceivedFunding></UserReceivedFunding>
       <div>
        </div>
-        <button>+</button>
-      </>
+        <button class = "plusBtn">+</button>
+      </div>
       
         
       
