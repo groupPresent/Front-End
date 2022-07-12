@@ -16,24 +16,29 @@ const SignUp = () => {
   const [accountNum, setAccountNum] = useState('')
   const [gender, setGender] = useState('')
 
-  const [files, setFiles] = useState('')
+  const [files, setFiles] = useState('NOIMG')
+  const data = {
+    userName,
+    password,
+    name,
+    birthDay,
+    accountNum,
+    gender,
+  }
 
-  const signUp = () => {
-    const data = [
-      {
-        userName,
-        password,
-        name,
-        birthDay,
-        accountNum,
-        gender,
-      },
-    ]
-
-    let formData = new FormData()
-    formData.append('profileImg', files)
-
-    formData.append('userRequestDto', JSON.stringify(data))
+  let formData = new FormData()
+  formData.append('profileImg', files)
+  formData.append('userRequestDto',JSON.stringify(data))
+  
+  // formData.append('userName', userName)
+  // formData.append('password', password)
+  // formData.append('name', name)
+  // formData.append('birthDay', birthDay)
+  // formData.append('accountNum', accountNum)
+  // formData.append('gender', gender)
+  
+  const signUp = (e) => {
+    e.preventDefault()
 
     const fetchData = async () => {
       try {
@@ -55,12 +60,14 @@ const SignUp = () => {
     fetchData()
   }
 
+  // JSON객체 사용하기 않기
+  //아래 사진 객체 사용하지 않기
+  //사진 영어이름으로
   const onLoadFile = (e) => {
-    setFiles(URL.createObjectURL(e.target.files[0]))
+    setFiles(e.target.files[0])
   }
 
   const deleteFileImage = () => {
-    URL.revokeObjectURL(files)
     setFiles('')
   }
 
@@ -86,7 +93,7 @@ const SignUp = () => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
-      <br/>
+      <br />
       <label htmlFor="pwd">비밀번호 : </label>
       <input
         id="pwd"
@@ -94,7 +101,7 @@ const SignUp = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <br/>
+      <br />
       <label htmlFor="name">이름 : </label>
       <input
         id="name"
@@ -102,7 +109,7 @@ const SignUp = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <br/>
+      <br />
       <label htmlFor="birth">생년월일 : </label>
       <input
         id="birth"
@@ -110,7 +117,7 @@ const SignUp = () => {
         value={birthDay}
         onChange={(e) => setBirthDay(e.target.value)}
       />
-      <br/>
+      <br />
       <label htmlFor="accountNum">계좌번호 : </label>
       <input
         id="accountNum"
@@ -118,7 +125,7 @@ const SignUp = () => {
         value={accountNum}
         onChange={(e) => setAccountNum(e.target.value)}
       />
-      <br/>
+      <br />
       <label htmlFor="gender">성별 : </label>
       <input
         id="gender"
@@ -131,6 +138,5 @@ const SignUp = () => {
     </div>
   )
 }
-
 
 export default SignUp
