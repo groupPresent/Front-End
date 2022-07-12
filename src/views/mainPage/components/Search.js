@@ -10,14 +10,19 @@ const Search = () => {
 
   return (
     <>
+    <div class = "divFriendsInput">
       <input
-        placeholder="친구를 검색해 주세요"
+        placeholder=" | 누구의 기념일이 궁금하신가요?"
         value={value}
         onChange={onChange}
+        class = "friendsInput"
       />
-      <button type="submit">(돋보기 아이콘)</button>
+      </div>
+      <button type="submit" /*class='magnifier'*/></button>
     </>
   )
 }
 
 export default Search
+
+

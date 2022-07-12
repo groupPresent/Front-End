@@ -1,128 +1,160 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  FlatList
-} from "react-native";
+// import { BsStar, BsStarFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Friends = () => {
-  const [data] = useState([
+  //ÏπúÍµ¨ Î™©Î°ù Ï°∞Ìöå
+  const [friendList, setFullList] = useState([
     {
-      id: 1,
-      image: "https://bootdey.com/img/Content/avatar/avatar6.png",
-      username: "πÆ«œ¥√"
+      friendId: 1,
+      photoUrl: "https://bootdey.com/img/Content/avatar/avatar6.png",
+      friendName: "boemin",
+      favorite: false
     },
     {
-      id: 2,
-      image: "https://bootdey.com/img/Content/avatar/avatar2.png",
-      username: "±Ë«ˆºˆ"
+      friendId: 2,
+      photoUrl: "https://bootdey.com/img/Content/avatar/avatar2.png",
+      friendName: "boemin",
+      favorite: false
     },
     {
-      id: 3,
-      image: "https://bootdey.com/img/Content/avatar/avatar3.png",
-      username: "¿”øπ∂˜"
+      friendId: 3,
+      photoUrl: "https://bootdey.com/img/Content/avatar/avatar3.png",
+      friendName: "ÍπÄÌòÑÏàò",
+      favorite: false
     },
     {
-      id: 4,
-      image: "https://bootdey.com/img/Content/avatar/avatar4.png",
-      username: "¡∂πŒ»£"
+      friendId: 4,
+      photoUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
+      friendName: "ÍπÄÎØºÌò∏",
+      favorite: false
     },
     {
-      id: 5,
-      image: "https://bootdey.com/img/Content/avatar/avatar1.png",
-      username: "±ËπŒº≠"
+      friendId: 5,
+      photoUrl: "https://bootdey.com/img/Content/avatar/avatar1.png",
+      friendName: "boemin",
+      favorite: false
     },
     {
-      id: 6,
-      image: "https://bootdey.com/img/Content/avatar/avatar6.png",
-      username: "±ËπŒºˆ"
+      friendId: 12,
+      photoUrl: "https://bootdey.com/img/Content/avatar/avatar1.png",
+      friendName: "boemin",
+      favorite: true
+    },
+    {
+      friendId: 15,
+      photoUrl: "https://bootdey.com/img/Content/avatar/avatar1.png",
+      friendName: "boemin",
+      favorite: false
     }
   ]);
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <Text style={styles.name}>ƒ£±∏∏Ò∑œ</Text>
-        </View>
-      </View>
 
-      <View style={styles.body}>
-        <FlatList
-          style={styles.container}
-          enableEmptySections={true}
-          data={data}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity>
-                <View style={styles.box}>
-                  <Image style={styles.image} source={{ uri: item.image }} />
-                  <Text style={styles.username}>{item.username}</Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
-      </View>
-    </View>
+  //ÏπúÍµ¨ Ï¶êÍ≤®Ï∞æÍ∏∞ Îì±Î°ù/Ï∑®ÏÜå
+  const [inputs, setInputs] = useState({
+    friendId: ""
+  });
+  const { friendId } = inputs;
+  const onChange = (e) => {
+    const { friendId, value } = e.target;
+    setInputs({
+      ...inputs,
+      [friendId]: value
+    });
+  };
+
+  //Î≥ÑÌëú ÌÅ¥Î¶≠ÌïòÎ©¥ Ï¶êÍ≤®Ï∞æÍ∏∞ ÏÉÅÌÉú Î≥ÄÍ≤Ω
+  const onFavorite = (friendId) => {
+    setFullList(
+      friendList.map((user) =>
+        user.friendId === friendId
+          ? { ...user, favorite: !user.favorite }
+          : user
+      )
+    );
+  };
+
+  //ÏπúÍµ¨ Í≤ÄÏÉâ
+  const [inputText, setInputText] = useState("");
+
+  let inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+  };
+
+  function List(props) {
+    const filteredData = friendList.filter((el) => {
+      if (props.input === "") {
+        return "";
+      } else {
+        return el.friendName.toLowerCase().includes(props.input);
+      }
+    });
+    return (
+      <ul>
+        {filteredData.map((item) => (
+          <div key={item.friendId}>
+            <img src={item.photoUrl} />
+            <Link to="/friendtab">{item.friendName}</Link>
+          </div>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <>
+      {friendList.friendName}
+
+      <div>
+        <div className="search">
+          <div
+            id="outlined-basic"
+            onChange={inputHandler}
+            variant="outlined"
+            fullWidth
+            label="Search"
+          />
+        </div>
+        <List input={inputText} />
+      </div>
+      <div>
+        favorite
+        <div friendList={friendList}>
+          {friendList.map(
+            (item, index) =>
+              item.favorite && (
+                <div>
+                  <img src={item.photoUrl} />
+                  <Link to="/friendtab">{item.friendName}</Link>
+                  <button
+                    key={item.friendId}
+                    onClick={() => onFavorite(item.friendId)}
+                  >star fill</button>
+                </div>
+              )
+          )}
+        </div>
+        friendList
+        {friendList.map(
+          (item, index) =>
+            !item.favorite && (
+              <div>
+                <img src={item.photoUrl} />
+                <Link to="/friendtab">{item.friendName}</Link>
+                <button
+                  key={item.friendId}
+                  onChange={onChange}
+                  onClick={() => onFavorite(item.friendId)}
+                >
+                star empty
+                </button>
+              </div>
+            )
+        )}
+      </div>
+    </>
   );
 };
 
 export default Friends;
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: "pink"
-  },
-  headerContent: {
-    padding: 30,
-    alignItems: "center"
-  },
-  avatar: {
-    width: 130,
-    height: 130,
-    borderRadius: 63,
-    borderWidth: 4,
-    borderColor: "#FFFFFF",
-    marginBottom: 10
-  },
-  image: {
-    width: 60,
-    height: 60
-  },
-  name: {
-    fontSize: 22,
-    color: "#FFFFFF",
-    fontWeight: "600"
-  },
-  body: {
-    padding: 30,
-    backgroundColor: "pink"
-  },
-  box: {
-    padding: 5,
-    marginTop: 5,
-    marginBottom: 5,
-    backgroundColor: "#FFFFFF",
-    flexDirection: "row",
-    shadowColor: "black",
-    shadowOpacity: 0.2,
-    shadowOffset: {
-      height: 1,
-      width: -2
-    },
-    elevation: 2
-  },
-  username: {
-    color: "#20B2AA",
-    fontSize: 22,
-    alignSelf: "center",
-    marginLeft: 10
-  }
-});

@@ -1,0 +1,52 @@
+.sentFunding {
+    /* background: url("./myPageImages/4.BG.png" );
+    background-size: cover;   
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-position: center top;
+    background-repeat: no-repeat; */
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+}
+
+
+.divButtons {
+    margin-top: 7px; 
+}
+
+.buttons{
+    margin-right: 90px;
+}
+
+.myPresenTo{
+
+    @import url("../common/Fonts/segoesc\ 2.ttf");
+    font-family : "Segoe Script";
+    color: white;
+    background-color: transparent;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 18px;
+
+    
+}
+
+.receivedFundingBtn{
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color: white;
+    background-color: transparent;
+    margin-right: 22px;
+    margin-top: 7px;
+    
+}
+
+.sentFundingBtn{
+    font-family: 'Jeju Myeongjo', serif;
+    @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+    color: white;
+    background-color: transparent;
+    margin-top: 7px;
+}

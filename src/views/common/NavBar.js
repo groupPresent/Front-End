@@ -1,17 +1,27 @@
 import {Link} from 'react-router-dom'
-
+import "./navbar.css";
 const Navbar=()=>{
+
+
+  function logoClick(e) {
+    window.location.href = "/"
+  }
+
+
+  function friendClick(e) {
+    window.location.href = "/friend"
+  }
+
   return (
   <>
    <nav>
-    <ul>
-      <li><Link to="/">1</Link></li>
-      <li><Link to="/">2</Link></li>
-      <li><Link to="/">3</Link></li>
-      <li><Link to="/">3</Link></li>
-      <li><Link to="/">4</Link></li>
-      <li><Link to="/">5</Link></li>
-    </ul>
+     <button class='hamburger' onClick={logoClick}></button>
+     <button class='logo' onClick={logoClick}></button>
+     <button class='magnifier'></button>
+     <button class='addFriends' onClick={friendClick}></button>
+
+     
+    
   </nav>
   </>    
   );

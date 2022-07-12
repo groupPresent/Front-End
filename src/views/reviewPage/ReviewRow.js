@@ -1,26 +1,67 @@
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useCallback } from "react"; 
+import { Route, Routes, Link } from 'react-router-dom';
+import axios from 'axios' 
+import ReviewPage from "./ReviewPage"
+//Î∞±Í∑∏ÎùºÏö¥Îìú Ïù¥ÎØ∏ÏßÄ Í≤ΩÎ°ú
+import bg from "../../../src/img/background/withRibon2.png";
+import "../../css/components/box.css"
+import "../../css/components/button.css"
 
-export default function ReviewRow({ idx, giftName, giftPhoto, star, review }) {
-  // const giftName = giftName;
-  // const pubDate = props.row.pubDate;
-  // const desc = props.row.description;
 
+export default function ReviewRow(props) {
+  const [review, setReview] = useState({});
+  const [url, setUrl] = useState('');
+  const [limit, setLimit] = useState(0);
+
+  useEffect(() => {
+    setReview(props.review);
+    setUrl(props.url);
+    document.body.style.background = `url(${bg}) repeat-y center top / cover`;
+  }, [limit])
+
+  const updateReview = (reviewId) => {
+    props.IdEvent(reviewId);
+    props.modeEvent('update');
+  }
+
+  const deleteReview = (reviewId) => {
+    axios.put(url)    
+    .then((response) => {    
+      props.IdEvent(reviewId);
+      props.modeEvent('get');
+    })
+    .catch(() => {
+      console.log('i want delete',review);
+      props.IdEvent(reviewId);
+      props.modeEvent('get');
+    })
+  }
+  
   return (
-    <Link to={`/yeram/detail/${idx}`}>
-      <li className="review-row">
-        <div>
-          <div>...</div>
-          <div>
-            <img className="gift-img" src={giftPhoto} />
+    <li className="review-row basic-box">
+      <span className="book-mark"><div></div><div></div></span>
+      <div className="review-box">
+        <div className="gift-info">
+          <div className="gift-img">
+            <img src={review.photo} />
           </div>
-          <div className="gift-info">
-            <div className="name">º±π∞ ¿Ã∏ß: {giftName}</div>
-            <div className="price">º±π∞ ∞°∞›: {}</div>
-            <div className="star">º±π∞ ∫∞¡°: {star}</div>
-            <div className="review">∏Æ∫‰ ≥ªøÎ: {review}</div>
+
+          <div className="gift-detail">
+            <div className="name">ÏÑ†Î¨º Ïù¥Î¶Ñ: {review.name}</div>
+            <div className="price">ÏÑ†Î¨º Í∞ÄÍ≤©: {review.price}</div>
+            <div className="star">ÏÑ†Î¨º Î≥ÑÏ†ê: {review.star}</div>
           </div>
         </div>
-      </li>
-    </Link>
+
+        <div className="review-content">
+          <div>Î¶¨Î∑∞ ÎÇ¥Ïö©: {review.review}</div>
+        </div>
+
+        <div className="btn-wrap">
+          <button className="highlight-btn" onClick={event => updateReview(review.idx)}><span>ÌõÑÍ∏∞ ÏàòÏ†ï</span></button>
+          <button className="highlight-btn" onClick={event => deleteReview(review.idx)}><span>ÌõÑÍ∏∞ ÏÇ≠Ï†ú</span></button>
+        </div>
+      </div>
+    </li>
   );
 }
