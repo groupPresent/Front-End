@@ -3,6 +3,7 @@ import axios from 'axios';
 // import ReviewList from "./ReviewList";
 import Write from "../Write/Write";
 import FundingList from "../detailPage/FundingList";
+import Navbar from "../common/NavBar";
 
 export default function WriteFundingPage(props) {
 
@@ -27,13 +28,20 @@ export default function WriteFundingPage(props) {
 
   if (mode === 'post') {
     return (
-      <Write url={FUNDING_API_URL} type={"funding"} writingMode={mode}/>// modeEvent={setMode}
+      <>
+        <Navbar/>
+        <Write url={FUNDING_API_URL} type={"funding"} writingMode={mode}/> 
+        {/* // modeEvent={setMode} */}
+      </>
     )
   } else if (mode === 'update') {
       console.log('update')
       console.log(fundingId)
       return (
-        <Write url={FUNDING_API_URL} writingType={"funding"} writingMode={mode} funding={FundingList[fundingId]} reviewModeEvent={setMode}/>
+        <>
+          <Navbar/>
+          <Write url={FUNDING_API_URL} writingType={"funding"} writingMode={mode} funding={FundingList[fundingId]} reviewModeEvent={setMode}/>
+        </>
       )
   // } else if (mode === 'delete') {
   //     console.log('delete')

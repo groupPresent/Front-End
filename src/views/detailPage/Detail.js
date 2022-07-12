@@ -74,52 +74,55 @@ const Detail = () => {
 
   let text = `최소 금액 ${tmpData.giftFundingPrice}원`
   return (
-    <div className='detailPage'>
-      <div className='gift-funding-info basic-box'>
-        <div className='gift-basic-info'>
-          <img src={tmpData.giftPhoto} alt="선물"></img>
-          <h3>{tmpData.giftName}</h3>
+    <>
+      <Navbar/>
+      <div className='detailPage'>
+        <div className='gift-funding-info basic-box'>
+          <div className='gift-basic-info'>
+            <img src={tmpData.giftPhoto} alt="선물"></img>
+            <h3>{tmpData.giftName}</h3>
 
-          <div className='give-funding'>
-            <div>
-              <input placeholder={text} value={fundingPrice} onChange={onChange} />
-              <span>원</span>
+            <div className='give-funding'>
+              <div>
+                <input placeholder={text} value={fundingPrice} onChange={onChange} />
+                <span>원</span>
+              </div>
+              <button
+                className='highlight-btn'
+                onClick={() => {
+                  //post메소드
+                  setFundingPrice(0)
+                }}
+              >
+                펀딩하기
+              </button>
             </div>
-            <button
-              className='highlight-btn'
-              onClick={() => {
-                //post메소드
-                setFundingPrice(0)
-              }}
-            >
-              펀딩하기
-            </button>
+          </div>
+          <div className='funding-info'>
+            <div className='funding-percent'>
+              <div> 펀딩률 : {tmpData.giftFundingRate}%</div>
+              <progress
+                style={{
+                  width: '100%',
+                  height: '30px',
+                }}
+                value={Number(tmpData.giftFundingRate)}
+                max="100"
+              ></progress>
+            </div>
+
+            <hr />
+            <div className='funding-list'>
+              <FundingList contributorList={tmpData.contributorList}></FundingList>
+            </div>
           </div>
         </div>
-        <div className='funding-info'>
-          <div className='funding-percent'>
-            <div> 펀딩률 : {tmpData.giftFundingRate}%</div>
-            <progress
-              style={{
-                width: '100%',
-                height: '30px',
-              }}
-              value={Number(tmpData.giftFundingRate)}
-              max="100"
-            ></progress>
-          </div>
 
-          <hr />
-          <div className='funding-list'>
-            <FundingList contributorList={tmpData.contributorList}></FundingList>
-          </div>
+        <div className='comment-box basic-box'>
+          <Review commentList={tmpData.commentList}></Review>
         </div>
       </div>
-
-      <div className='comment-box basic-box'>
-        <Review commentList={tmpData.commentList}></Review>
-      </div>
-    </div>
+      </>
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios'; 
 import ReviewList from "./ReviewList";
 import Write from "../Write/Write";
+import Navbar from "../common/NavBar";
 
 export default function ReviewPage(props) {
     console.log("mode is",props.mode);
@@ -52,17 +53,26 @@ export default function ReviewPage(props) {
 
     if (mode === 'get') {
         return (
-            <ReviewList url={REVIEW_API_URL} reviewList={reviewList} modeEvent={setMode} IdEvent={setReviewId}/>// modeEvent={setMode}
+            <>
+                <Navbar/>
+                <ReviewList url={REVIEW_API_URL} reviewList={reviewList} modeEvent={setMode} IdEvent={setReviewId}/>
+            </>
         )
     } else if (mode === 'post') {
         return (
-            <Write url={REVIEW_API_URL} type={"reivew"} writingMode={mode}/>// modeEvent={setMode}
+            <>
+                <Navbar/>
+                <Write url={REVIEW_API_URL} type={"reivew"} writingMode={mode}/>// modeEvent={setMode}
+            </>
         )
     } else if (mode === 'update') {
         console.log('update')
         console.log(reviewId)
         return (
-            <Write url={REVIEW_API_URL} writingType={"review"} writingMode={mode} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
+            <>
+                <Navbar/>
+                <Write url={REVIEW_API_URL} writingType={"review"} writingMode={mode} review={reviewList[reviewId]} reviewModeEvent={setMode}/>
+            </>
         )
     } else if (mode === 'delete') {
         console.log('delete')
