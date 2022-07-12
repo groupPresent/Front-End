@@ -63,11 +63,11 @@ const Detail = () => {
     ],
     contributorNum: 10,
     commentList: [
-      { commenter: '버민', content: 'ㅋ왜태어났냐' },
-      { commenter: '버민', content: 'ㅋ왜태어났냐' },
-      { commenter: '버민', content: 'ㅋ왜태어났냐' },
-      { commenter: '버민', content: 'ㅋ왜태어났냐' },
-      { commenter: '버민', content: 'ㅋ왜태어났냐' },
+      { commenter: '친구1', content: '생일축하한다' },
+      { commenter: '친구2', content: '여친이랑 오래가라~' },
+      { commenter: '친구3', content: '종강 화이팅!' },
+      { commenter: '친구4', content: '나도 이거 사줘' },
+      { commenter: '친구5', content: '돈없는뎁,,,' },
     ],
     commentNum: 3,
   }

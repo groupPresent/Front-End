@@ -60,17 +60,17 @@ const SignUp = () => {
     fetchData()
   }
 
-  // JSON객체 사용하기 않기
-  //아래 사진 객체 사용하지 않기
-  //사진 영어이름으로
+  //1. JSON객체 사용하기 않기
+  //2. 아래 사진 객체 사용하지 않기
+  //3. 사진 영어이름으로
   const onLoadFile = (e) => {
-    setFiles(e.target.files[0])
+    setFiles(URL.createObjectURL(e.target.files[0]))
   }
 
   const deleteFileImage = () => {
+    URL.revokeObjectURL(files)
     setFiles('')
   }
-
   return (
     <div>
       <h1>회원가입</h1>
